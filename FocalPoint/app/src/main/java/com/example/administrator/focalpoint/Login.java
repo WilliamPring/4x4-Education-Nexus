@@ -14,8 +14,11 @@ import android.widget.Button;
 
 public class Login extends Activity {
     final Context context = this;
+    Button b_LogIn;
     Button b_CreateAccount;
     Button b_ForgetPassword;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,13 @@ public class Login extends Activity {
                 //sms.sendTextMessage("4169992203", null, "sup", null, null);
                 }
         });
+        b_LogIn = (Button) findViewById(R.id.log_in);
+        b_LogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
     }
 }
