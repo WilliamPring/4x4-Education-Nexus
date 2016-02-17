@@ -13,4 +13,6 @@
     <string name="QuestionNumber5">#5</string>
     <string name="TimerForEachQuestion">30</string>
     <string name="Question5Content">The real origins of the War of ___________ were in the conflict that raged in Europe for two decades after Napoleon Bonaparte</string>
+    <string name="Question6Content">Every letter in the alphabet exists in this sentence.</string>
+    <string name="QuestionNumber6">#6</string>
 </resources>
