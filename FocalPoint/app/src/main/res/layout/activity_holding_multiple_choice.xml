@@ -19,7 +19,7 @@
             android:text="@string/questionNumber4"
             android:id="@+id/questionNumber4"
             android:layout_alignParentEnd="true"
-            android:textSize="@dimen/QuestionSize" />
+            android:textSize="@dimen/question_size" />
 
         <TextView
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:id="@+id/QuestionTimeViewCount"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:textSize="@dimen/QuestionSize"
+            android:textSize="@dimen/question_size"
             android:textAlignment="gravity"
             android:gravity="right"/>
 

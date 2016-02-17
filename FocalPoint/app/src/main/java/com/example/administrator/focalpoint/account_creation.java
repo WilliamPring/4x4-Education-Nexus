@@ -23,7 +23,7 @@ public class account_creation extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_creation);
 
-        menu = new String[]{"Login", "CoursesFragment", "Multiple Choice", "True or False", "Fill in the Blank"};
+        menu = new String[]{"Login", "Courses", "Multiple Choice", "True or False", "Fill in the Blank"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
@@ -37,10 +37,27 @@ public class account_creation extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Clicked: " + menu[position], Toast.LENGTH_SHORT).show();
                 dLayout.closeDrawers();
-                if(menu[position].equals("True or False")){
+                if (menu[position].equals("Courses")){
                     Intent intent = new Intent(getApplicationContext(), trueOrFalse.class);
                     startActivity(intent);
                 }
+                else if(menu[position].equals("Multiple Choice")){
+                    Intent intent = new Intent(getApplicationContext(), HoldingMultipleChoice.class);
+                    startActivity(intent);
+                }
+                else if (menu[position].equals("Courses")){
+                    Intent intent = new Intent(getApplicationContext(), AddCourse.class);
+                    startActivity(intent);
+                }
+                else if (menu[position].equals("True or False")){
+                    Intent intent = new Intent(getApplicationContext(), trueOrFalse.class);
+                    startActivity(intent);
+                }
+                else if (menu[position].equals("Fill in the Blank")){
+                    Intent intent = new Intent(getApplicationContext(), fillInTheBlank.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

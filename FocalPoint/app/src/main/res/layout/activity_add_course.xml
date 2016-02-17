@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textIsSelectable="false"
-        android:textSize="@dimen/QuestionSize" />
+        android:textSize="@dimen/question_size" />
 
     <LinearLayout
         android:orientation="vertical"

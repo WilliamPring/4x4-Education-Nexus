@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/TimerForEachQuestion"
+            android:text="@string/timerForEachQuestion"
             android:id="@+id/QuestionTimeViewCount"
             android:layout_alignParentEnd="true"
             android:textSize="@dimen/question_size" />
@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/QuestionNumber6"
+            android:text="@string/question_6"
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Question6Content"
+            android:text="@string/question_6_content"
             android:paddingTop="25dp"
             android:id="@+id/QuestionID6"
             android:layout_weight="1"

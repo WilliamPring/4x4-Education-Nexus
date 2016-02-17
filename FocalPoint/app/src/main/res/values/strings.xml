@@ -10,6 +10,7 @@
     <string name="email_address">Email</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="school">School</string>
+    <string name="question_6">#6</string>
     <string name="questionNumber5">#5</string>
     <string name="timerForEachQuestion">30</string>
     <string name="question5Content">The real origins of the War of ___________ were in the conflict that raged in Europe for two decades after Napoleon Bonaparte</string>
@@ -23,4 +24,5 @@
     <string name="question4ABCD">A) Royal Bank Of Canada\n\nB)Bank of Nova Scotia\n\nC)Toronto-Dominion Bank\n\nD)Bank of Monteral</string>
     <string name="courses">Courses</string>
     <string name="addNewCourses">Add Courses</string>
+    <string name="question_6_content">This sentence contains every letter in the alphabet.</string>
 </resources>

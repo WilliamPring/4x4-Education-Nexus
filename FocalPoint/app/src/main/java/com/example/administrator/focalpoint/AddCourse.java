@@ -22,7 +22,7 @@ public class AddCourse extends Activity {
         setContentView(R.layout.activity_add_course);
         Button addCourse;
         addCourse = (Button) findViewById(R.id.addCourses);
-        addCourse.setOnClickListener(new View.OnClickListener() {
+       /* addCourse.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // get prompts.xml view
@@ -69,7 +69,7 @@ public class AddCourse extends Activity {
             }
        // });
 
-
+*/
     }
 
 
