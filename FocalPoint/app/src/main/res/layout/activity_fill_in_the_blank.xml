@@ -9,63 +9,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.administrator.focalpoint.fillInTheBlank"
     android:id="@+id/QuestionTimerCount">
-    <LinearLayout
-        android:orientation="horizontal"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/QuestionNumber5"
+        android:id="@+id/questionNumberFive"
+        android:layout_gravity="left"
+        android:textSize="@dimen/QuestionSize"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:id="@+id/QuestionTimeViewCount"
+        android:layout_alignBottom="@+id/questionNumberFive"
+        android:layout_alignParentEnd="true"
+        android:textSize="@dimen/QuestionSize" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/TimerForEachQuestion"
-            android:id="@+id/QuestionTimeViewCount"
-            android:layout_alignParentEnd="true"
-            android:textSize="@dimen/QuestionSize" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/QuestionNumber5"
-            android:id="@+id/textView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:textSize="@dimen/QuestionSize"
-            android:textAlignment="gravity"
-            android:gravity="right"/>
-
-   </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Question5Content"
-            android:paddingTop="25dp"
-            android:id="@+id/QuestionID5"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/QuestionSizes" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:singleLine="true"
-            android:paddingTop="240dp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
-
-
+        android:layout_below="@id/QuestionTimeViewCount"
+        android:text="Here is a question?"/>
 </RelativeLayout>

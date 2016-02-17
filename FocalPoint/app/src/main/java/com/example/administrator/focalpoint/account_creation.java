@@ -22,11 +22,11 @@ public class account_creation extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_creation);
 
-        menu = new String[]{"Login", "Courses", "Multiple Choice", "True or False", "Fill in the Blank"};
+        menu = new String[]{"Login", "CoursesFragment", "Multiple Choice", "True or False", "Fill in the Blank"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menu);
 
         dList.setAdapter(adapter);
         dList.setSelector(android.R.color.holo_orange_light);
