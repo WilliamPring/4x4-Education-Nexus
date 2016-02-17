@@ -1,6 +1,7 @@
 package com.example.administrator.focalpoint;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
@@ -35,7 +36,11 @@ public class account_creation extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Clicked: " + menu[position], Toast.LENGTH_SHORT).show();
-                //dLayout.closeDrawers();
+                dLayout.closeDrawers();
+                if(menu[position].equals("True or False")){
+                    Intent intent = new Intent(getApplicationContext(), trueOrFalse.class);
+                    startActivity(intent);
+                }
             }
         });
 
