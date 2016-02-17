@@ -22,6 +22,7 @@ public class AddCourse extends Activity {
         setContentView(R.layout.activity_add_course);
         Button addCourse;
         addCourse = (Button) findViewById(R.id.addCourses);
+        //asdf
        /* addCourse.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
