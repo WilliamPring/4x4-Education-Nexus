@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".AddCourse">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,8 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".account_creation" />
+        <activity android:name=".Login" />
+        <activity android:name=".trueOrFalse" />
         <activity android:name=".fillInTheBlank" />
-        <activity android:name=".trueOrFalse"></activity>
+        <activity android:name=".HoldingMultipleChoice"></activity>
     </application>
 
 </manifest>
