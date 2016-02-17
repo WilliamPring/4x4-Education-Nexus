@@ -48,7 +48,7 @@ public class AddCourse extends Activity {
                                         // edit text
                                         //sult.setText(userInput.getText());
                                     }
-                                })
+                                })//asd
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
