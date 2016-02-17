@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".account_creation" />
         <activity android:name=".fillInTheBlank" />
+        <activity android:name=".trueOrFalse"></activity>
     </application>
 
 </manifest>

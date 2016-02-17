@@ -27,4 +27,10 @@
         android:layout_alignBottom="@+id/questionNumberFive"
         android:layout_alignParentEnd="true"
         android:textSize="@dimen/QuestionSize" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/QuestionTimeViewCount"
+        android:text="Here is a question?"/>
 </RelativeLayout>
