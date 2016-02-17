@@ -21,7 +21,7 @@ public class fillInTheBlank extends Activity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         TextView count = (TextView) findViewById (R.id.QuestionTimeViewCount);
-                        count.setText(String.valueOf(TimeCounter)); // you can set it to a textView to show it to the user to see the time passing while he is writing.
+                        count.setText(String.valueOf(TimeCounter));
                         TimeCounter--;
                         if (TimeCounter == -1)
                         {
