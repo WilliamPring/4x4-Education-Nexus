@@ -10,71 +10,64 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddCourse extends Activity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        final Context context = this;
-        final EditText input = new EditText(this);
+    private Button button;
+    private TextView editTextMainScreen;
+    final Context context = this;
+    private EditText PutMainScreen;
+
+    public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
-        Button addCourse;
-        addCourse = (Button) findViewById(R.id.addCourses);
-        //asdf
-       /* addCourse.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
+        button = (Button) findViewById(R.id.addCourses);
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
                 // get prompts.xml view
-                LayoutInflater li = LayoutInflater.from(context);
-                View promptsView = li.inflate(R.layout.prompts, null);
+                LayoutInflater layoutInflater = LayoutInflater.from(context);
+                editTextMainScreen = (TextView) findViewById(R.id.listOfCourses);
+                View promptView = layoutInflater.inflate(R.layout.prompts, null);
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
-                // set prompts.xml to alertdialog builder
-                alertDialogBuilder.setView(promptsView);
+                // set prompts.xml to be the layout file of the alertdialog builder
+                alertDialogBuilder.setView(promptView);
 
-                final EditText userInput = (EditText) promptsView
-                        .findViewById(R.id.editTextDialogUserInput);
+                final EditText input = (EditText) promptView.findViewById(R.id.userInput);
 
-                // set dialog message
+                // setup a dialog window
                 alertDialogBuilder
                         .setCancelable(false)
-                        .setPositiveButton("OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        // get user input and set it to result
-                                        // edit text
-                                        //sult.setText(userInput.getText());
-                                    }
-                                })//asd
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                editTextMainScreen.setText(input.getText());
+
+                            }
+                        })
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+                                    public void onClick(DialogInterface dialog,	int id) {
                                         dialog.cancel();
                                     }
                                 });
 
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
+                // create an alert dialog
+                AlertDialog alertD = alertDialogBuilder.create();
 
-                // show it
-                alertDialog.show();
+                alertD.show();
 
             }
         });
-
-
-            }
-       // });
-
-*/
     }
-
-
-
-
-
 }
+
+
