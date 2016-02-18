@@ -24,3 +24,20 @@ body{
 	width: 50%;
 	background-color: #F1F1F1;
 }
+
+.questionSummary{
+	background-color: #F1F1F1;
+	border: solid 1px black;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	width: 95%;
+}
+
+.questionArea{
+	display: inline-block;
+	width: 50%;
+}
+
+.noSpaceDiv{
+	display: inline-block;
+}
