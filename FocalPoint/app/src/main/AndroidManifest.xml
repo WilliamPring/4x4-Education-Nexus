@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,7 +22,8 @@
         <activity android:name=".AddCourse" />
         <activity android:name=".trueOrFalse" />
         <activity android:name=".fillInTheBlank" />
-        <activity android:name=".HoldingMultipleChoice"></activity>
+        <activity android:name=".HoldingMultipleChoice" />
+        <activity android:name=".Results"></activity>
     </application>
 
 </manifest>

@@ -29,12 +29,14 @@
             android:maxHeight="300dp"
             android:adjustViewBounds="true"
             android:background="@android:color/transparent"
+            android:layout_weight="3"
             android:src="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -44,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="15dp"
                     android:gravity="bottom"
                     android:text="@string/first_name"/>
                 <TextView
@@ -52,29 +54,36 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="bottom"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="15dp"
                     android:text="@string/last_name"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="bottom"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="15dp"
                     android:text="@string/email_address"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="bottom"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="15dp"
                     android:text="@string/date_of_birth"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="bottom"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="15dp"
                     android:text="@string/school"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:paddingBottom="15dp"
+                    android:text="@string/password_hint"/>
             </LinearLayout>
 
             <LinearLayout
@@ -103,18 +112,31 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="datetime"
                     android:layout_weight="1"
+                    android:singleLine="true"
                     android:id="@+id/date_of_birth"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
                     android:layout_weight="1"
                     android:id="@+id/school"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:id="@+id/password"/>
             </LinearLayout>
         </LinearLayout>
         <Button
+            android:id="@+id/b_create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/create_account_text"/>
     </LinearLayout>
     <ListView
