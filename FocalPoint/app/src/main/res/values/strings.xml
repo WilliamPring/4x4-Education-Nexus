@@ -23,6 +23,7 @@
     <string name="question4Content">What is the largest public companies in Canada by profit?\n</string>
     <string name="question4ABCD">A) Royal Bank Of Canada\n\nB)Bank of Nova Scotia\n\nC)Toronto-Dominion Bank\n\nD)Bank of Monteral</string>
     <string name="courses">Courses</string>
+    <string name="enterCourseName">Enter The Course ID</string>
     <string name="addNewCourses">Add Courses</string>
     <string name="question_6_content">This sentence contains every letter in the alphabet.</string>
     <string name="results">Results</string>
