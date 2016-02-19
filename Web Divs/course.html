@@ -1,0 +1,79 @@
+<html>
+
+	<head>
+		<link href="style.css" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<!--create multiple of these to populate the session list-->
+		<div class="session">
+			<div class="sessionPiece" style="float:left">
+				<!--this div will have Session name and topic-->
+				<div style="height: 30%">
+					<span id="sName">Session Name</span>
+				</div>
+				<div style="height: 70%">
+					<span id="sDescription">Session Description</span>
+				</div>
+			</div>
+			<div class="sessionPiece" style="float:right">
+				<!--this div will have number of questions, question type distribution, start button-->
+				<div style="height: 30%">
+					<span id="sNumQs">Number of Questions</span>
+				</div>
+				<div style="height: 40%">
+					<span id="sTypes">Types of Questions</span>
+				</div>
+				<div style="height: 30%">
+					<button id="sEdit">Edit Session</button>
+					<button id="sUse">Use Session</button>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="createSession" style="width: 100%">
+			<div style="height: 5%; width:100%;"><!--name of session-->
+				<span id="createSName">Name of Session</span>
+			</div>
+			<div style="height: 95%; width:100%; margin:0px; display:inline-block;">
+
+
+				<!--current questions div-->
+				<div id="currentQuestionsArea" class="questionsArea">
+					<span>Current Questions</span>
+					<div id="currentQuestions">
+
+						<div id="question" class="questionSummary">
+							<span id="questionText">Have the first however many letters visible in this part here. <br> They can click anywhere on this div to edit the question.</span>
+							<span id="questionType">Multiple Choice</span>
+						</div>
+						<div id="question" class="questionSummary">
+							<span id="questionText">Testing another area of stuff</span>
+						</div>
+
+					</div>
+				</div><div id="allQuestionsArea" class="questionsArea">
+					<span>Question List</span>
+					<div id="allQuestions">
+						<div id="question" class="questionSummary">
+							<span id="questionText">Have the first hoasdfasdf to edit the question.</span>
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class="course">
+			<label id="courseName">Course Name</label>
+			<label id="professor">Professor</label>
+		</div>
+	</body>
+
+
+</html>

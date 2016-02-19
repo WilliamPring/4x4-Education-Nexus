@@ -1,0 +1,43 @@
+body{
+	padding: 5px;
+}
+.course{
+	background-color:#f1f1f1;
+	padding:0.01em 16px
+	box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.course label{
+	padding-right: 5em;
+}
+
+.session {
+	background-color: #F1F1F1;
+	padding: 2px;
+	width: 100%;
+	height: 150px;
+	border-style: solid;
+	border-color: #000000;
+	border-width: 2px;
+}
+.sessionPiece{
+	width: 50%;
+	background-color: #F1F1F1;
+}
+
+.questionSummary{
+	background-color: #F1F1F1;
+	border: solid 1px black;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	width: 95%;
+}
+
+.questionArea{
+	display: inline-block;
+	width: 50%;
+}
+
+.noSpaceDiv{
+	display: inline-block;
+}
