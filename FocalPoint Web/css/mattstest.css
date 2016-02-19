@@ -1,0 +1,17 @@
+.questionSummary{
+    margin-top: 5px;
+}
+#questionText span{
+  margin-left: 2px
+  margin-top: 2px;
+}
+
+.multipleChoice{
+  background-color: #f8bcff;
+}
+.fillInBlank{
+  background-color: #bcfcff;
+}
+.trueFalse{
+  background-color: #c4ffbc;
+}

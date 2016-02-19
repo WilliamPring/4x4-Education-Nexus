@@ -1,0 +1,52 @@
+<!--the divs for the session list screen
+- Repeat the portion between actual session piece and end session piece for each session shown
+-->
+css:<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Session List</h1>
+    </div>
+  </div>
+  <hr>
+  <!--actual session piece starts here-->
+  <div class="row">
+    <div class="form-group-sm" style="width: 100%; display: inline-block;">
+      <div style="width:100%; height:50%">
+
+        <div style="width: 50%; display: inline-block; float: left;">
+          <label for="sName">Session Name:</label>
+          <textarea class="form-control" rows="1" id="sName" placeholder="Enter name of session"></textarea>
+        </div><!--
+
+     --><div style="width: 50%; display: inline-block;">
+          <label style="margin-left:5px;">Number of Questions</label>
+          <p style="margin-left:5px">#</p>
+        </div>
+
+      </div>
+      <div style="width:100%; height:50%">
+
+        <div style="width: 50%; height: 100%; display: inline-block; float: left;">
+          <label for="sDesc">Session Description:</label>
+          <textarea class="form-control" rows="3" id="sDesc" placeholder="Enter description for the session"></textarea>
+        </div><!--
+
+     --><div style="width: 50%; height: 100%; display: inline-block">
+         <div style="height: 50%">
+           <label style="margin-left:5px;">Types of Questions</label>
+         </div>
+         <div style="height: 50% margin-left:5px;">
+           <p style="margin-left:5px;">Multiple Choice:</p>
+           <p style="margin-left:5px;">True/False:</p>
+           <p style="margin-left:5px;">Fill in the Blank:</p>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--actual session piece ends here-->
+  <hr>
+
+</div>

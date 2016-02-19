@@ -78,7 +78,7 @@ public class AddCourse extends Activity {
             }
         });
 
-        menu = new String[]{"Login", "Courses", "Multiple Choice", "True or False", "Fill in the Blank"};
+        menu = new String[]{"Login", "Courses", "Question Demo"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
@@ -98,14 +98,8 @@ public class AddCourse extends Activity {
                 } else if (menu[position].equals("Courses")) {
                     Intent intent = new Intent(getApplicationContext(), AddCourse.class);
                     startActivity(intent);
-                } else if (menu[position].equals("Multiple Choice")) {
+                } else if (menu[position].equals("Question Demo")) {
                     Intent intent = new Intent(getApplicationContext(), HoldingMultipleChoice.class);
-                    startActivity(intent);
-                } else if (menu[position].equals("True or False")) {
-                    Intent intent = new Intent(getApplicationContext(), trueOrFalse.class);
-                    startActivity(intent);
-                } else if (menu[position].equals("Fill in the Blank")) {
-                    Intent intent = new Intent(getApplicationContext(), fillInTheBlank.class);
                     startActivity(intent);
                 }
 
