@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".main_activity"></activity>
+        <activity android:name=".main_drawer_activity"></activity>
     </application>
 
 </manifest>
