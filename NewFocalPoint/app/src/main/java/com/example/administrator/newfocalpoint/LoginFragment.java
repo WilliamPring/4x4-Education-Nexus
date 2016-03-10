@@ -57,7 +57,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 Fragment newFragment = new accountCreation();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.create_account, newFragment).commit();
-                // do your code
                 break;
 
             default:
