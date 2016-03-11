@@ -1,11 +1,17 @@
+/*
+* FILE : TrueFalse.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour for the True or False type of question.
+*/
+
 package com.example.administrator.newfocalpoint;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +34,8 @@ public class TrueFalse extends Fragment {
         // Required empty public constructor
     }
 
+
+    //used to instantiate a new instance with parameters
     public static TrueFalse newInstance(int newQuestionNumber, String newQuestion) {
         TrueFalse fragment = new TrueFalse();
         Bundle args = new Bundle();
@@ -40,7 +48,7 @@ public class TrueFalse extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments() != null) { //set up question variables
             questionNumber = getArguments().getInt("questionNumber");
             questionText = getArguments().getString("question");
         }
@@ -57,13 +65,13 @@ public class TrueFalse extends Fragment {
         }
 
         txtQNum = (TextView) view.findViewById(R.id.questionNumber);
-        txtQNum.setText("#" + Integer.toString(questionNumber));
+        txtQNum.setText("#" + Integer.toString(questionNumber)); //set question number
 
         txtQuestion = (TextView) view.findViewById(R.id.questionText);
-        txtQuestion.setText(questionText);
+        txtQuestion.setText(questionText); //set question text
 
         txtTimer = (TextView) view.findViewById(R.id.timerCount);
-        txtTimer.setText(String.valueOf(10));
+        txtTimer.setText(String.valueOf(10)); //set timer start
 
         //start 60 second timer
         new TimerThread().execute(String.valueOf(10), String.valueOf(1000));
@@ -72,6 +80,7 @@ public class TrueFalse extends Fragment {
     }
 
 
+    //class for a async task to count down the time remaining
     class TimerThread extends AsyncTask<String, Void, String> {
         private int internalCounter = 0;
 
@@ -90,6 +99,7 @@ public class TrueFalse extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            //change the text
                             txtTimer.setText(String.valueOf(Integer.parseInt(txtTimer.getText().toString()) - 1));
                         }
                     });

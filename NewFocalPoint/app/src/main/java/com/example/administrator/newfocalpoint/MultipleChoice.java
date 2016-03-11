@@ -1,7 +1,14 @@
+/*
+* FILE : MultipleChoice.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour for the Multiple Choice type of question.
+*/
+
 package com.example.administrator.newfocalpoint;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -148,7 +155,6 @@ public class MultipleChoice extends Fragment {
 
             Fragment newFragment = new FillBlank();
             Bundle args = new Bundle();
-            args.putString("title", getActivity().getTitle().toString());
             args.putString("question", "In 1812, computers we often used to do _________.");
             args.putInt("questionNumber", 2);
             newFragment.setArguments(args);

@@ -1,8 +1,14 @@
+/*
+* FILE : FillBlank.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour for the Fill in the Blank type of question.
+*/
+
 package com.example.administrator.newfocalpoint;
 
-import android.app.ActivityManager;
-import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -108,7 +114,6 @@ public class FillBlank extends Fragment {
             //launch next question here
             Fragment newFragment = new TrueFalse();
             Bundle args = new Bundle();
-            args.putString("title", getActivity().getTitle().toString());
             args.putString("question", "There are 652 banana chunks in your average pineapple.");
             args.putInt("questionNumber", 3);
             newFragment.setArguments(args);

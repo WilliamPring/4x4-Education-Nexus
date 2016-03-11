@@ -36,7 +36,23 @@ public class Login_DataBase {
 
     public static final String DROP_LIST_TABLE =
             "DROP TABLE IF EXISTS" + LIST_TABLE;
-    
+
+
+
+    public static final String COURSE_TABLE = "Courses";
+
+    public static int COURSE_ID = 0;
+    public static String COURSE_NAME = "Course Name";
+    public static String TEACHER = "Teacher";
+    public static String CREATE_COURSE_TABLE =
+            "CREATE TABLE" + COURSE_TABLE + " (" +
+                    COURSE_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COURSE_NAME + "TEXT NOT NULL, " +
+                    TEACHER + "TEXT NOT NULL);";
+
+    public static final String DROP_COURSE_TABLE =
+            "DROP TABLE IF EXISTS" + COURSE_TABLE;
+
 }
 
 
