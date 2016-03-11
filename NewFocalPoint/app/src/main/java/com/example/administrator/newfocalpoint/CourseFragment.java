@@ -4,14 +4,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class CourseFragment extends Fragment {
+public class CourseFragment extends Fragment implements View.OnClickListener{
 
     private static String ARG_NAME = "name";
     private static String ARG_ID = "id";
@@ -21,6 +23,7 @@ public class CourseFragment extends Fragment {
     public String id;
     public String teacher_name;
 
+    private GridLayout grid;
 
 
     public CourseFragment() {
@@ -43,6 +46,7 @@ public class CourseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -68,8 +72,25 @@ public class CourseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_course, container, false);
+        View view = inflater.inflate(R.layout.fragment_course, container, false);
+        grid = (GridLayout) view.findViewById(R.id.course_layout);
+        grid.setOnClickListener(this);
+        return view;
     }
+
+
+    @Override
+    public void onClick(View v) {
+        Fragment newFragment = new QuestionWaitFragment();
+        Bundle args = new Bundle();
+        args.putString("title", name);
+        newFragment.setArguments(args);
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+        ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
+    }
+
+
 
 }
