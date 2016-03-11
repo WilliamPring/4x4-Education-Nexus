@@ -1,6 +1,7 @@
 package com.example.administrator.newfocalpoint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,10 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class QuestionWaitFragment extends Fragment {
 
     private String title;
+
+    private Timer waitTimer;
 
     public QuestionWaitFragment() {
         // Required empty public constructor
@@ -34,7 +40,6 @@ public class QuestionWaitFragment extends Fragment {
         if(bundle!=null && bundle.containsKey("title")){
             getActivity().setTitle(bundle.getString("title"));
         }
-
         return view;
     }
 
