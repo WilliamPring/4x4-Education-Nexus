@@ -2,8 +2,10 @@ package com.example.administrator.newfocalpoint;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +62,49 @@ public class TrueFalse extends Fragment {
         txtQuestion = (TextView) view.findViewById(R.id.questionText);
         txtQuestion.setText(questionText);
 
+        txtTimer = (TextView) view.findViewById(R.id.timerCount);
+        txtTimer.setText(String.valueOf(10));
+
+        //start 60 second timer
+        new TimerThread().execute(String.valueOf(10), String.valueOf(1000));
+
         return view;
     }
+
+
+    class TimerThread extends AsyncTask<String, Void, String> {
+        private int internalCounter = 0;
+
+        @Override
+        protected void onPreExecute(){
+            //internalCounter = counter;
+        }
+
+        @Override
+        protected String doInBackground(String... params){
+            try{
+                int loopCount = Integer.parseInt(params[0]);
+                long waitTime = Long.parseLong(params[1]);
+                for(int i = 0; i < loopCount; i++){
+                    Thread.sleep(waitTime);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            txtTimer.setText(String.valueOf(Integer.parseInt(txtTimer.getText().toString()) - 1));
+                        }
+                    });
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            return String.valueOf(System.currentTimeMillis());
+        }
+
+        @Override
+        protected void onPostExecute(String result){
+            //launch next question here
+        }
+    }
+
 }
