@@ -9,6 +9,7 @@
 
 package com.example.administrator.newfocalpoint;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,11 +17,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 
-public class MultipleChoice extends Fragment {
+public class MultipleChoice extends Fragment implements Button.OnClickListener{
 
     private String questionText;
     private int questionNumber;
@@ -43,6 +45,8 @@ public class MultipleChoice extends Fragment {
     private TextView txtQuestion;
     private TextView txtQNum;
     private TextView txtTimer;
+
+    private TimerThread tt;
 
     public MultipleChoice() {
         // Required empty public constructor
@@ -106,26 +110,44 @@ public class MultipleChoice extends Fragment {
         txtD.setText("D) " + answerD);
 
         btnA = (Button) view.findViewById(R.id.questionAButton);
+        btnA.setOnClickListener(this);
         btnB = (Button) view.findViewById(R.id.questionBButton);
+        btnB.setOnClickListener(this);
         btnC = (Button) view.findViewById(R.id.questionCButton);
+        btnC.setOnClickListener(this);
         btnD = (Button) view.findViewById(R.id.questionDButton);
-        //set on clicks here
+        btnD.setOnClickListener(this);
+
 
         txtTimer = (TextView) view.findViewById(R.id.timerCount);
         txtTimer.setText(String.valueOf(10));
 
         //start 60 second timer
-        new TimerThread().execute(String.valueOf(10), String.valueOf(1000));
+        tt = new TimerThread();
+        tt.execute(String.valueOf(10), String.valueOf(1000));
 
         return view;
     }
 
+    @Override
+    public void onClick(View v) {
+
+        tt.cancel(true);
+
+        Fragment newFragment = new FillBlank();
+        Bundle args = new Bundle();
+        args.putString("question", "In 1812, computers we often used to do _________.");
+        args.putInt("questionNumber", 2);
+        newFragment.setArguments(args);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
+    }
+
+
     class TimerThread extends AsyncTask<String, Void, String> {
-        private int internalCounter = 0;
 
         @Override
         protected void onPreExecute(){
-            //internalCounter = counter;
         }
 
         @Override

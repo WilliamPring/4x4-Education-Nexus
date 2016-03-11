@@ -9,6 +9,7 @@
 
 package com.example.administrator.newfocalpoint;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,11 +17,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class FillBlank extends Fragment {
+public class FillBlank extends Fragment implements Button.OnClickListener{
 
     private String questionText;
     private int questionNumber;
@@ -29,7 +32,11 @@ public class FillBlank extends Fragment {
     private TextView txtQNum;
     private TextView txtTimer;
 
+    private EditText answer;
+
     private Button btnSubmit;
+
+    private TimerThread tt;
 
     public FillBlank() {
         // Required empty public constructor
@@ -73,18 +80,40 @@ public class FillBlank extends Fragment {
         txtTimer = (TextView) view.findViewById(R.id.timerCount);
         txtTimer.setText(String.valueOf(10));
 
+        answer = (EditText) view.findViewById(R.id.editText);
+
+        btnSubmit = (Button) view.findViewById(R.id.submitQuestion);
+        btnSubmit.setOnClickListener(this);
+
+
+
         //start 60 second timer
-        new TimerThread().execute(String.valueOf(10), String.valueOf(1000));
+        tt = new TimerThread();
+        tt.execute(String.valueOf(10), String.valueOf(1000));
 
         return view;
     }
 
+    @Override
+    public void onClick(View v) {
+
+        tt.cancel(true);
+        InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(answer.getWindowToken(), 0);
+        Fragment newFragment = new TrueFalse();
+        Bundle args = new Bundle();
+        args.putString("question", "There are 652 banana chunks in your average pineapple.");
+        args.putInt("questionNumber", 3);
+        newFragment.setArguments(args);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
+    }
+
     class TimerThread extends AsyncTask<String, Void, String> {
-        private int internalCounter = 0;
+
 
         @Override
         protected void onPreExecute(){
-            //internalCounter = counter;
         }
 
         @Override

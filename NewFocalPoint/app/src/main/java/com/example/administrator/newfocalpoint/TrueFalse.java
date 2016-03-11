@@ -16,9 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-public class TrueFalse extends Fragment {
+public class TrueFalse extends Fragment{
 
 
     private String questionText;
@@ -76,8 +77,24 @@ public class TrueFalse extends Fragment {
         //start 60 second timer
         new TimerThread().execute(String.valueOf(10), String.valueOf(1000));
 
+        View swipe = view.findViewById(R.id.swipe_area);
+        swipe.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
+            @Override
+            public void onSwipeRight() {
+                Toast.makeText(getActivity(), "Swiped Right!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                Toast.makeText(getActivity(), "Swiped Left!", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
         return view;
     }
+
 
 
     //class for a async task to count down the time remaining
