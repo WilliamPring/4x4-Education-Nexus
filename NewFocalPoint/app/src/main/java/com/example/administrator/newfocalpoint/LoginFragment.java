@@ -1,4 +1,6 @@
 package com.example.administrator.newfocalpoint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -43,6 +45,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
         switch (v.getId()) {
 
             case R.id.log_in:
@@ -50,12 +53,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.forgot_pass:
-                // do your code
+                Uri uriUrl = Uri.parse("http://williampring.com/forgotpass/");
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
                 break;
 
             case R.id.create_account:
                 Fragment newFragment = new accountCreation();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft = getFragmentManager().beginTransaction();
+                ft.addToBackStack(String.valueOf(newFragment));
                 ft.replace(R.id.main_menu, newFragment).commit();
                 break;
 
