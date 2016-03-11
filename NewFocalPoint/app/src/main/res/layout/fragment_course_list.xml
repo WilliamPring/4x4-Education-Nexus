@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +7,8 @@
     <ScrollView
         android:id="@+id/scroll_area"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="60">
         <LinearLayout
             android:id="@+id/frag_container"
             android:layout_width="match_parent"
@@ -19,10 +20,9 @@
         </LinearLayout>
     </ScrollView>
     <Button
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/scroll_area"
-        android:layout_alignParentBottom="true"
         android:text="@string/add_course_text"/>
 
-</RelativeLayout>
+</LinearLayout>

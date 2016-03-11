@@ -20,6 +20,15 @@ public class CourseListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //access db here and create the course fragments needed to hold the courses
 
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        getActivity().setTitle("Courses");
+
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment newFrag1 = CourseFragment.newInstance("Math 2100", "10301", "Matthew Warren");
         ft.add(R.id.frag_container, newFrag1);
@@ -42,12 +51,6 @@ public class CourseListFragment extends Fragment {
         newFrag1 = CourseFragment.newInstance("Alphabet", "1!", "Denys Polituik");
         ft.add(R.id.frag_container, newFrag1);
         ft.commit();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_course_list, container, false);
     }
 
