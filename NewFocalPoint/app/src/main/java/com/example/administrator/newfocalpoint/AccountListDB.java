@@ -84,7 +84,7 @@ public class AccountListDB {
         boolean status = false;
         openReadableDB();
         ContentValues contentValues = new ContentValues();
-        String query = "SELECT Email, Password FROM" + TableName +";";
+        String query = "SELECT Email, Password FROM " + TableName +";";
         Cursor cursor = db.rawQuery(query, null);
         String username;
         String password;

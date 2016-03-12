@@ -62,9 +62,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.log_in:
                 AccountListDB db = new AccountListDB(globalContext);
-                db.matchPasswordAndUser(login.getText().toString(), pass.getText().toString());
-                Intent intent = new Intent(getActivity(), main_drawer_activity.class);
-                startActivity(intent);
+                boolean status = db.matchPasswordAndUser(login.getText().toString(), pass.getText().toString());
+                if (status == true)
+                {
+                    Intent intent = new Intent(getActivity(), main_drawer_activity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+
+                }
+
                 break;
 
             case R.id.forgot_pass:
