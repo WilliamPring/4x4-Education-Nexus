@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:background="#FFFFFF"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.focalpoint.trueOrFalse">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/questionNumber"
+            android:id="@+id/questionNumber"
+            android:textSize="@dimen/qNum_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/timerDefault"
+            android:id="@+id/timerCount"
+            android:textSize="@dimen/qTimer_size"
+            android:textAlignment="gravity"
+            android:gravity="right"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_text"
+        android:id="@+id/questionText"
+        android:textSize="@dimen/qText_size" />
+
+
+    <LinearLayout
+        android:id="@+id/swipe_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:gravity="bottom|center"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/truepic"
+            android:scaleType="centerCrop"
+            android:background="#ff4f4f">
+        </ImageView>
+        <ImageView
+            android:id="@+id/false_side"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#30c9fc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/falsepic"/>
+    </LinearLayout>
+
+</LinearLayout>

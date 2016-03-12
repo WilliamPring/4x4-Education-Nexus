@@ -14,4 +14,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="questionNumber">QNum</string>
+    <string name="timerDefault">Time Remaining</string>
+    <string name="questionD">D</string>
+    <string name="questionC">C</string>
+    <string name="questionB">B</string>
+    <string name="questionA">A</string>
+    <string name="question_text">Question text</string>
+    <string name="answer_text">Answer</string>
+    <string name="submitAnswer">Submit Answer</string>
 </resources>

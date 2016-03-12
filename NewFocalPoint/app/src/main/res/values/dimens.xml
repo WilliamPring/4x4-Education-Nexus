@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="qText_size">25sp</dimen>
+    <dimen name="qNum_size">20sp</dimen>
+    <dimen name="qTimer_size">20sp</dimen>
+    <dimen name="qAns_size">20sp</dimen>
 </resources>
