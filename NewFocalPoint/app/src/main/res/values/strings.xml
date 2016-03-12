@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">NewFocalPoint</string>
     <string name="password_hint">Password</string>
-    <string name="username_hint">Username</string>
+    <string name="username_hint">Email</string>
     <string name="log_in_button">Log In</string>
     <string name="forgot_pass_text">Forgot password</string>
     <string name="create_account_text">Create Account</string>

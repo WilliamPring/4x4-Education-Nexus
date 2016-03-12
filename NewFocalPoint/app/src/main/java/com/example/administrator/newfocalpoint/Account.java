@@ -9,7 +9,7 @@ import android.widget.EditText;
  * Created by WilliamPring on 3/11/2016.
  */
 public class Account {
-
+    //varibles
     String newName;
     String newLastName;
     String newEmail;

@@ -1,6 +1,10 @@
 package com.example.administrator.newfocalpoint;
 
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -12,13 +16,39 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class main_drawer_activity extends AppCompatActivity {
+import java.io.File;
 
+public class main_drawer_activity extends AppCompatActivity {
+    Context mContext;
     private String[] menu;
     private DrawerLayout dLayout;
     private ListView dList;
     private ArrayAdapter<String> adapter;
 
+    public void downloadFile(String uRl) {
+        File direct = new File(Environment.getExternalStorageDirectory()
+                + "/RESFILE");
+
+        if (!direct.exists()) {
+            direct.mkdirs();
+        }
+        mContext = this;
+        DownloadManager mgr = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+
+        Uri downloadUri = Uri.parse(uRl);
+        DownloadManager.Request request = new DownloadManager.Request(
+                downloadUri);
+
+        request.setAllowedNetworkTypes(
+                DownloadManager.Request.NETWORK_WIFI
+                        | DownloadManager.Request.NETWORK_MOBILE)
+                .setAllowedOverRoaming(false).setTitle("LOGO")
+                .setDescription("Our Logo")
+                .setDestinationInExternalPublicDir("/RESFILE", "LOGO.jpg");
+
+        mgr.enqueue(request);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +57,7 @@ public class main_drawer_activity extends AppCompatActivity {
 
 
 
-        menu = new String[]{"Login", "Create Account", "Question Demo"};
+        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Image"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
@@ -59,6 +89,9 @@ public class main_drawer_activity extends AppCompatActivity {
                     Fragment newFragment = new QuestionWaitFragment();
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.container, newFragment).commit();
+                }
+                else if (menu[position].equals("Download Logo")) {
+                    downloadFile("http://williampring.com/res/logoApp.gif");
                 }
 
             }

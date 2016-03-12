@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
     Button loginBttn;
@@ -65,12 +66,25 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 boolean status = db.matchPasswordAndUser(login.getText().toString(), pass.getText().toString());
                 if (status == true)
                 {
+                    Toast.makeText(getActivity(),"Logging In", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getActivity(), main_drawer_activity.class);
                     startActivity(intent);
                 }
+                else if((login.getText().toString().equals("")) && (pass.getText().toString().equals("")))
+                {
+                    Toast.makeText(getActivity(), "Email and Password Field Are Empty", Toast.LENGTH_LONG).show();
+                }
+                else if (login.getText().toString().equals(""))
+                {
+                    Toast.makeText(getActivity(), "Email Field is Empty", Toast.LENGTH_LONG).show();
+                }
+                else if (pass.getText().toString().equals(""))
+                {
+                    Toast.makeText(getActivity(), "Password Field is Empty", Toast.LENGTH_LONG).show();
+                }
                 else
                 {
-
+                    Toast.makeText(getActivity(), "Invalid Login", Toast.LENGTH_LONG).show();
                 }
 
                 break;

@@ -50,13 +50,14 @@ Button createAccount;
     @Override
     public void onClick(View v) {
         boolean status = true;
+        //getting the id for all the edit text field
         name = (EditText) view.findViewById(R.id.first_name);
         lastName = (EditText) view.findViewById(R.id.last_name);
         email = (EditText) view.findViewById(R.id.email_address);
         dob = (EditText) view.findViewById(R.id.date_of_birth);
         school = (EditText) view.findViewById(R.id.school);
         textPassword = (EditText) view.findViewById(R.id.password);
-
+        //convert them to strings
         String newName = name.getText().toString();
         String newLastName = lastName.getText().toString();
         String newEmail = email.getText().toString();
@@ -64,20 +65,18 @@ Button createAccount;
         String newSchool = school.getText().toString();
         String newPassword = textPassword.getText().toString();
         globalContext = this.getContext();
+        //validate them to see if they are emtpy
         if (newName.equals("")) {
             status = false;
         }
         if (lastName.getText().equals("")) {
             status = false;
-
         }
         if (email.getText().equals("")) {
             status = false;
-
         }
         if (dob.getText().equals("")) {
             status = false;
-
         }
         if (school.getText().equals("")) {
             status = false;
@@ -85,25 +84,29 @@ Button createAccount;
         if (textPassword.getText().equals("")) {
             status = false;
         }
+        //if everything is filled up continue
         if (status == true) {
+            //getting the activity context
             AccountListDB db = new AccountListDB(globalContext);
-            StringBuilder sb = new StringBuilder();
+            //create a new account
             Account account = new Account();
+            //set all the parameter
             account.setNewName(newName);
             account.setNewLastName(newLastName);
             account.setNewEmail(newEmail);
             account.setNewDOB(newDOB);
             account.setNewSchool(newSchool);
             account.setNewTextPassword(newPassword);
+            //do an insert
             long insertId = db.insertTask(account);
-            if (insertId > 0) {
-                sb.append("Row inserted! Insert Id: " + insertId + "\n");
-            }
+            Toast.makeText(getActivity(),"Account Created", Toast.LENGTH_LONG).show();
+            //go back to the previous framgent
             this.getFragmentManager().popBackStack();
         }
         else
         {
-
+            //error message
+            Toast.makeText(getActivity(),"Missing Fields", Toast.LENGTH_LONG).show();
         }
     }
 

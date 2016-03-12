@@ -101,6 +101,7 @@ public class AccountListDB {
 
             }while(cursor.moveToNext());
         }
+        closeCursor(cursor);
         return status;
     }
     public long insertTask(Account account) {
