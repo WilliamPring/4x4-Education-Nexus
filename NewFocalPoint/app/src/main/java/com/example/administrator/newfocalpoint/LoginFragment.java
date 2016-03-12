@@ -17,10 +17,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     Button loginBttn;
     Button createAcc;
     Button forgotPass;
-    TextView login;
-    TextView pass;
-    View view;
+
+    EditText login;
+    EditText pass;
+
     Context globalContext;
+
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -42,6 +44,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         createAcc = (Button) view.findViewById(R.id.create_account);
         createAcc.setOnClickListener(this);
 
+        login = (EditText) view.findViewById(R.id.username);
+        pass = (EditText) view.findViewById(R.id.password);
+
+
         forgotPass = (Button) view.findViewById(R.id.forgot_pass);
         forgotPass.setOnClickListener(this);
         globalContext = this.getContext();
@@ -56,8 +62,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.log_in:
                 AccountListDB db = new AccountListDB(globalContext);
-                login = (TextView) view.findViewById(R.id.email_address);
-                pass = (TextView) view.findViewById(R.id.password);
                 db.matchPasswordAndUser(login.getText().toString(), pass.getText().toString());
                 Intent intent = new Intent(getActivity(), main_drawer_activity.class);
                 startActivity(intent);
