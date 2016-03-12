@@ -42,13 +42,23 @@ public class main_drawer_activity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Clicked: " + menu[position], Toast.LENGTH_SHORT).show();
                 dLayout.closeDrawers();
                 if (menu[position].equals("Login")) {
+                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                    Bundle b = new Bundle();
+                    b.putInt("lORc", 0);
+                    intent.putExtras(b);
+                    startActivity(intent);
 
                 } else if (menu[position].equals("Create Account")) {
-
+                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                    Bundle b = new Bundle();
+                    b.putInt("lORc", 1);
+                    intent.putExtras(b);
+                    startActivity(intent);
 
                 } else if (menu[position].equals("Question Demo")) {
-
-
+                    Fragment newFragment = new QuestionWaitFragment();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.container, newFragment).commit();
                 }
 
             }
