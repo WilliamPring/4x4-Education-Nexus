@@ -25,30 +25,52 @@ public class main_drawer_activity extends AppCompatActivity {
     private ListView dList;
     private ArrayAdapter<String> adapter;
 
+
+
     public void downloadFile(String uRl) {
-        File direct = new File(Environment.getExternalStorageDirectory()
-                + "/RESFILE");
 
-        if (!direct.exists()) {
-            direct.mkdirs();
+        String state = Environment.getExternalStorageState();
+
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            // We can read and write the media
+            Toast.makeText(getApplicationContext(), "Read Writeable = True", Toast.LENGTH_SHORT).show();
+            File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FocalPoint");
+            boolean success = false;
+
+            if (!direct.exists()) {
+
+                success = direct.mkdirs();
+            }
+
+            DownloadManager mgr = (DownloadManager) getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
+
+            Uri downloadUri = Uri.parse(uRl);
+            DownloadManager.Request request = new DownloadManager.Request(downloadUri);
+
+            if(success) {
+                try {
+                    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
+                            .setAllowedOverRoaming(false)
+                            .setTitle("Logo")
+                            .setDescription("FocalPoint Logo")
+                            .setDestinationInExternalPublicDir("/FocalPoint", "logo.gif");
+                    mgr.enqueue(request);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Failed to make directory.", Toast.LENGTH_SHORT).show();
+            }
+
+        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            Toast.makeText(getApplicationContext(), "Read Only.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Errors accessing directory.", Toast.LENGTH_SHORT).show();
         }
-        mContext = this;
-        DownloadManager mgr = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
-
-        Uri downloadUri = Uri.parse(uRl);
-        DownloadManager.Request request = new DownloadManager.Request(
-                downloadUri);
-
-        request.setAllowedNetworkTypes(
-                DownloadManager.Request.NETWORK_WIFI
-                        | DownloadManager.Request.NETWORK_MOBILE)
-                .setAllowedOverRoaming(false).setTitle("LOGO")
-                .setDescription("Our Logo")
-                .setDestinationInExternalPublicDir("/RESFILE", "LOGO.jpg");
-
-        mgr.enqueue(request);
-
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +79,7 @@ public class main_drawer_activity extends AppCompatActivity {
 
 
 
-        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Image"};
+        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Logo"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
