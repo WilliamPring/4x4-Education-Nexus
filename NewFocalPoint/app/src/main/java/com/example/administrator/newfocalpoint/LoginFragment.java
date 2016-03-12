@@ -1,4 +1,5 @@
 package com.example.administrator.newfocalpoint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,12 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
     Button loginBttn;
     Button createAcc;
     Button forgotPass;
+    TextView login;
+    TextView pass;
     View view;
+    Context globalContext;
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -39,6 +44,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         forgotPass = (Button) view.findViewById(R.id.forgot_pass);
         forgotPass.setOnClickListener(this);
+        globalContext = this.getContext();
 
         return view;
     }
@@ -49,6 +55,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.log_in:
+                AccountListDB db = new AccountListDB(globalContext);
+                login = (TextView) view.findViewById(R.id.email_address);
+                pass = (TextView) view.findViewById(R.id.password);
+                db.matchPasswordAndUser(login.getText().toString(), pass.getText().toString());
                 Intent intent = new Intent(getActivity(), main_drawer_activity.class);
                 startActivity(intent);
                 break;

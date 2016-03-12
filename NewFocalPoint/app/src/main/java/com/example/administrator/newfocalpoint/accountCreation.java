@@ -64,20 +64,6 @@ Button createAccount;
         String newSchool = school.getText().toString();
         String newPassword = textPassword.getText().toString();
         globalContext = this.getContext();
-        AccountListDB db = new AccountListDB(globalContext);
-        StringBuilder sb = new StringBuilder();
-        Account account = new Account();
-        account.setNewName(newName);
-        account.setNewLastName(newLastName);
-        account.setNewEmail(newEmail);
-        account.setNewDOB(newDOB);
-        account.setNewSchool(newSchool);
-        account.setNewTextPassword(newPassword);
-        long insertId = db.insertTask(account);
-        if (insertId > 0) {
-            sb.append("Row inserted! Insert Id: " + insertId + "\n");
-        }
-        this.getFragmentManager().popBackStack();
         if (newName.equals("")) {
             status = false;
         }
@@ -100,8 +86,20 @@ Button createAccount;
             status = false;
         }
         if (status == true) {
-
-
+            AccountListDB db = new AccountListDB(globalContext);
+            StringBuilder sb = new StringBuilder();
+            Account account = new Account();
+            account.setNewName(newName);
+            account.setNewLastName(newLastName);
+            account.setNewEmail(newEmail);
+            account.setNewDOB(newDOB);
+            account.setNewSchool(newSchool);
+            account.setNewTextPassword(newPassword);
+            long insertId = db.insertTask(account);
+            if (insertId > 0) {
+                sb.append("Row inserted! Insert Id: " + insertId + "\n");
+            }
+            this.getFragmentManager().popBackStack();
         }
         else
         {

@@ -48,6 +48,8 @@ public class AccountListDB {
             db.execSQL(CREATE_ACCOUNT_TABLE);
         }
 
+
+
         @Override
         public void onUpgrade(SQLiteDatabase db,
                               int oldVersion, int newVersion) {
@@ -73,6 +75,34 @@ public class AccountListDB {
         db = dbHelper.getWritableDatabase();
     }
 
+    private void openReadableDB() {
+        db = dbHelper.getReadableDatabase();
+    }
+
+    public boolean matchPasswordAndUser(String user, String pass)
+    {
+        boolean status = false;
+        openReadableDB();
+        ContentValues contentValues = new ContentValues();
+        String query = "SELECT Email, Password FROM" + TableName +";";
+        Cursor cursor = db.rawQuery(query, null);
+        String username;
+        String password;
+        if (cursor.moveToFirst())
+        {
+            do {
+                username = cursor.getString(0);
+                password = cursor.getString(1);
+                if ((username.equals(user)) && (password.equals(pass)))
+                {
+                    status = true;
+                    break;
+                }
+
+            }while(cursor.moveToNext());
+        }
+        return status;
+    }
     public long insertTask(Account account) {
         ContentValues cv = new ContentValues();
         cv.put(NAME, account.getNewName());
