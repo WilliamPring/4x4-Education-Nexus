@@ -9,7 +9,6 @@
 
 package com.example.administrator.newfocalpoint;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +16,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -93,7 +91,7 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
             getActivity().setTitle(bundle.getString("title"));
         }
 
-
+        //fill fields
         txtQNum = (TextView) view.findViewById(R.id.questionNumber);
         txtQNum.setText("#" + Integer.toString(questionNumber));
 
@@ -120,11 +118,11 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
 
 
         txtTimer = (TextView) view.findViewById(R.id.timerCount);
-        txtTimer.setText(String.valueOf(10));
+        txtTimer.setText(String.valueOf(30));
 
-        //start 60 second timer
+        //start 30 second timer
         tt = new TimerThread();
-        tt.execute(String.valueOf(10), String.valueOf(1000));
+        tt.execute(String.valueOf(30), String.valueOf(1000));
 
         return view;
     }
@@ -149,7 +147,7 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
         tt.cancel(true);
     }
 
-
+    //thread for the countdown timer
     class TimerThread extends AsyncTask<String, Void, String> {
 
         @Override

@@ -1,6 +1,14 @@
+/*
+* FILE : forgotPasswordFragment.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* Launches a browser with information about resetting a password.
+*/
+
 package com.example.administrator.newfocalpoint;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

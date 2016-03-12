@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 public class CourseFragment extends Fragment implements View.OnClickListener{
 
@@ -40,7 +39,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
     public static CourseFragment newInstance(String newName, String newID, String newTeacherName) {
         CourseFragment fragment = new CourseFragment();
         Bundle args = new Bundle();
-
+        //set arguments for the new fragment
         args.putString(ARG_NAME, newName);
         args.putString(ARG_ID, newID);
         args.putString(ARG_TEACHER_NAME, newTeacherName);
@@ -60,6 +59,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onStart() {
         super.onStart();
+        //get all of the information
         if (getArguments() != null) {
             name = getArguments().getString(ARG_NAME);
             id = getArguments().getString(ARG_ID);
@@ -89,10 +89,9 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         Fragment newFragment = new QuestionWaitFragment();
+        //go to waiting for questions fragment
         Bundle args = new Bundle();
-
         args.putString("title", name);
-
         newFragment.setArguments(args);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();

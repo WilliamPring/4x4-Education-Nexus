@@ -55,6 +55,7 @@ public class QuestionWaitFragment extends Fragment {
         tt.cancel(true);
     }
 
+    //thread for counting down time
     class TimerThread extends AsyncTask<String, Void, String> {
 
         @Override

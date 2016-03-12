@@ -1,17 +1,25 @@
+/*
+* FILE : LoginFragment.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour for the main activity, with a drawer, that will hold the fragments.
+*/
+
 package com.example.administrator.newfocalpoint;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -37,8 +45,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-
         // Inflate the layout for this fragment
+
         loginBttn = (Button) view.findViewById(R.id.log_in);
         loginBttn.setOnClickListener(this);
 
@@ -59,12 +67,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentTransaction ft;
         switch (v.getId()) {
             case R.id.log_in:
                 AccountListDB db = new AccountListDB(globalContext);
                 boolean status = db.matchPasswordAndUser(login.getText().toString(), pass.getText().toString());
-                if (status == true)
+                if (status)
                 {
                     Toast.makeText(getActivity(),"Logging In", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getActivity(), main_drawer_activity.class);

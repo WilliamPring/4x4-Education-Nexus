@@ -1,16 +1,23 @@
+/*
+* FILE : AccountListDB.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour interacting with a database.
+*/
+
 package com.example.administrator.newfocalpoint;
 
-import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-/**
- * Created by WilliamPring on 3/12/2016.
- */
+
+
 public class AccountListDB {
     public static final String DB_NAME = "InformationLogin.db";
     public static final int DB_VERSION = 1;

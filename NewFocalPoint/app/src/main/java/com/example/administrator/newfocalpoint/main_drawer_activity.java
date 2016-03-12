@@ -1,3 +1,12 @@
+/*
+* FILE : main_drawer_activity.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour for the main activity, with a drawer, that will hold the fragments.
+*/
+
 package com.example.administrator.newfocalpoint;
 
 import android.app.DownloadManager;
@@ -26,20 +35,21 @@ public class main_drawer_activity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
 
 
-
+    //used to download file from a given url and save it to a directory we create
     public void downloadFile(String uRl) {
-
         String state = Environment.getExternalStorageState();
-
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             // We can read and write the media
+
             Toast.makeText(getApplicationContext(), "Read Writeable = True", Toast.LENGTH_SHORT).show();
             File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FocalPoint");
-            boolean success = false;
+            boolean success;
 
             if (!direct.exists()) {
-
                 success = direct.mkdirs();
+            }
+            else{
+                success = true;
             }
 
             DownloadManager mgr = (DownloadManager) getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
@@ -47,6 +57,7 @@ public class main_drawer_activity extends AppCompatActivity {
             Uri downloadUri = Uri.parse(uRl);
             DownloadManager.Request request = new DownloadManager.Request(downloadUri);
 
+            //if the directory was created or exists
             if(success) {
                 try {
                     request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
@@ -78,22 +89,23 @@ public class main_drawer_activity extends AppCompatActivity {
         setContentView(R.layout.activity_main_drawer_activity);
 
 
-
+        //titles for the drawer layout
         menu = new String[]{"Login", "Create Account", "Question Demo", "Download Logo"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
+        //adapter for the drawer
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menu);
 
         dList.setAdapter(adapter);
         dList.setSelector(android.R.color.holo_orange_light);
-        dList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        dList.setOnItemClickListener(new AdapterView.OnItemClickListener() { //listener for drawer
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Clicked: " + menu[position], Toast.LENGTH_SHORT).show();
-                dLayout.closeDrawers();
+                dLayout.closeDrawers(); //close drawers when one is clicked
                 if (menu[position].equals("Login")) {
+                    //go to login page
                     Intent intent = new Intent(view.getContext(), LoginActivity.class);
                     Bundle b = new Bundle();
                     b.putInt("lORc", 0);
@@ -101,6 +113,7 @@ public class main_drawer_activity extends AppCompatActivity {
                     startActivity(intent);
 
                 } else if (menu[position].equals("Create Account")) {
+                    //go to create account page
                     Intent intent = new Intent(view.getContext(), LoginActivity.class);
                     Bundle b = new Bundle();
                     b.putInt("lORc", 1);
@@ -108,17 +121,20 @@ public class main_drawer_activity extends AppCompatActivity {
                     startActivity(intent);
 
                 } else if (menu[position].equals("Question Demo")) {
+                    //go to waiting for questions
                     Fragment newFragment = new QuestionWaitFragment();
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.container, newFragment).commit();
                 }
                 else if (menu[position].equals("Download Logo")) {
+                    //download file
                     downloadFile("http://williampring.com/res/logoApp.gif");
                 }
 
             }
         });
 
+        //go to courses
         Fragment newFragment = new CourseListFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.container, newFragment).commit();

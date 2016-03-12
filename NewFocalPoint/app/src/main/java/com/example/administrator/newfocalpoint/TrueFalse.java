@@ -73,11 +73,11 @@ public class TrueFalse extends Fragment{
         txtQuestion.setText(questionText); //set question text
 
         txtTimer = (TextView) view.findViewById(R.id.timerCount);
-        txtTimer.setText(String.valueOf(10)); //set timer start
+        txtTimer.setText(String.valueOf(30)); //set timer start
 
-        //start 60 second timer
+        //start 30 second timer
         tt = new TimerThread();
-        tt.execute(String.valueOf(10), String.valueOf(1000));
+        tt.execute(String.valueOf(30), String.valueOf(1000));
 
         View swipe = view.findViewById(R.id.swipe_area);
         swipe.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {

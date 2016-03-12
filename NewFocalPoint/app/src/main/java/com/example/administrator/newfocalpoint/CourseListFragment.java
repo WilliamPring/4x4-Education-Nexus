@@ -1,3 +1,11 @@
+/*
+* FILE : CourseListFragment.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* Fragment used to hold multiple CourseFragments and an Add Courses button
+*/
 package com.example.administrator.newfocalpoint;
 
 import android.os.Bundle;
@@ -29,6 +37,8 @@ public class CourseListFragment extends Fragment {
         // Inflate the layout for this fragment
         getActivity().setTitle("Courses");
 
+        //add a bunch of CourseFragments,
+        //eventually this will be pulling from a DB online
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment newFrag1 = CourseFragment.newInstance("Math 2100", "10301", "Matthew Warren");
         ft.add(R.id.frag_container, newFrag1);
@@ -51,6 +61,7 @@ public class CourseListFragment extends Fragment {
         newFrag1 = CourseFragment.newInstance("Alphabet", "1!", "Denys Polituik");
         ft.add(R.id.frag_container, newFrag1);
         ft.commit();
+
         return inflater.inflate(R.layout.fragment_course_list, container, false);
     }
 

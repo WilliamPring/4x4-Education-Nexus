@@ -1,13 +1,15 @@
+/*
+* FILE : Account.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour for an Account.
+*/
+
 package com.example.administrator.newfocalpoint;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 
-/**
- * Created by WilliamPring on 3/11/2016.
- */
 public class Account {
     //varibles
     String newName;

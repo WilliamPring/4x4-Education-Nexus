@@ -71,6 +71,7 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
             getActivity().setTitle(bundle.getString("title"));
         }
 
+        //set fields
         txtQNum = (TextView) view.findViewById(R.id.questionNumber);
         txtQNum.setText("#" + Integer.toString(questionNumber));
 
@@ -78,18 +79,18 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         txtQuestion.setText(questionText);
 
         txtTimer = (TextView) view.findViewById(R.id.timerCount);
-        txtTimer.setText(String.valueOf(10));
+        txtTimer.setText(String.valueOf(30));
 
         answer = (EditText) view.findViewById(R.id.editText);
 
         btnSubmit = (Button) view.findViewById(R.id.submitQuestion);
-        btnSubmit.setOnClickListener(this);
+        btnSubmit.setOnClickListener(this); //set onclick listener from below
 
 
 
         //start 60 second timer
         tt = new TimerThread();
-        tt.execute(String.valueOf(10), String.valueOf(1000));
+        tt.execute(String.valueOf(30), String.valueOf(1000));
 
         return view;
     }
@@ -97,9 +98,14 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
     @Override
     public void onClick(View v) {
 
+        //stop thread
         tt.cancel(true);
+
+        //remove keyboard
         InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(answer.getWindowToken(), 0);
+
+        //go to next question
         Fragment newFragment = new TrueFalse();
         Bundle args = new Bundle();
         args.putString("question", "There are 652 banana chunks in your average pineapple.");
@@ -116,8 +122,8 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
     }
 
 
+    //thread to count down seconds
     class TimerThread extends AsyncTask<String, Void, String> {
-
 
         @Override
         protected void onPreExecute(){
