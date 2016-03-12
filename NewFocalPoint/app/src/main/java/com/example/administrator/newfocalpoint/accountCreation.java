@@ -1,5 +1,6 @@
 package com.example.administrator.newfocalpoint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class accountCreation extends Fragment implements View.OnClickListener {
 Button createAccount;
     View view;
@@ -20,6 +23,7 @@ Button createAccount;
     EditText dob;
     EditText school;
     EditText textPassword;
+    private Context globalContext = null;
     public accountCreation() {
         // Required empty public constructor
     }
@@ -52,7 +56,29 @@ Button createAccount;
         dob = (EditText) view.findViewById(R.id.date_of_birth);
         school = (EditText) view.findViewById(R.id.school);
         textPassword = (EditText) view.findViewById(R.id.password);
-        if (name.getText().equals("")) {
+
+        String newName = name.getText().toString();
+        String newLastName = lastName.getText().toString();
+        String newEmail = email.getText().toString();
+        String newDOB = dob.getText().toString();
+        String newSchool = school.getText().toString();
+        String newPassword = textPassword.getText().toString();
+        globalContext = this.getContext();
+        AccountListDB db = new AccountListDB(globalContext);
+        StringBuilder sb = new StringBuilder();
+        Account account = new Account();
+        account.setNewName(newName);
+        account.setNewLastName(newLastName);
+        account.setNewEmail(newEmail);
+        account.setNewDOB(newDOB);
+        account.setNewSchool(newSchool);
+        account.setNewTextPassword(newPassword);
+        long insertId = db.insertTask(account);
+        if (insertId > 0) {
+            sb.append("Row inserted! Insert Id: " + insertId + "\n");
+        }
+        this.getFragmentManager().popBackStack();
+        if (newName.equals("")) {
             status = false;
         }
         if (lastName.getText().equals("")) {
@@ -74,7 +100,11 @@ Button createAccount;
             status = false;
         }
         if (status == true) {
-            this.getFragmentManager().popBackStack();
+
+
+        }
+        else
+        {
 
         }
     }

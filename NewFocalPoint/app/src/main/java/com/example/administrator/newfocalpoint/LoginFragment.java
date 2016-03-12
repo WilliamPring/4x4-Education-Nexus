@@ -9,12 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
     Button loginBttn;
     Button createAcc;
     Button forgotPass;
-
+    View view;
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -47,9 +48,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         switch (v.getId()) {
-
             case R.id.log_in:
-                // do your code
+
                 break;
 
             case R.id.forgot_pass:
