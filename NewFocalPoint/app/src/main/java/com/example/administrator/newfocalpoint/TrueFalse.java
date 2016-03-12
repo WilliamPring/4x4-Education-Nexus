@@ -29,6 +29,7 @@ public class TrueFalse extends Fragment{
     private TextView txtQNum;
     private TextView txtTimer;
 
+    TimerThread tt;
 
 
     public TrueFalse() {
@@ -75,7 +76,8 @@ public class TrueFalse extends Fragment{
         txtTimer.setText(String.valueOf(10)); //set timer start
 
         //start 60 second timer
-        new TimerThread().execute(String.valueOf(10), String.valueOf(1000));
+        tt = new TimerThread();
+        tt.execute(String.valueOf(10), String.valueOf(1000));
 
         View swipe = view.findViewById(R.id.swipe_area);
         swipe.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
@@ -95,7 +97,11 @@ public class TrueFalse extends Fragment{
         return view;
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        tt.cancel(true);
+    }
 
     //class for a async task to count down the time remaining
     class TimerThread extends AsyncTask<String, Void, String> {

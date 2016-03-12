@@ -143,6 +143,12 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
         ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        tt.cancel(true);
+    }
+
 
     class TimerThread extends AsyncTask<String, Void, String> {
 

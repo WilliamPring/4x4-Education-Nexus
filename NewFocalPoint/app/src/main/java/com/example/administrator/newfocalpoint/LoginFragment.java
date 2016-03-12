@@ -49,7 +49,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.log_in:
-
+                Intent intent = new Intent(getActivity(), main_drawer_activity.class);
+                startActivity(intent);
                 break;
 
             case R.id.forgot_pass:

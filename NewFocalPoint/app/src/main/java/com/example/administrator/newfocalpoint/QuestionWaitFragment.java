@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 public class QuestionWaitFragment extends Fragment {
 
+    TimerThread tt;
 
     public QuestionWaitFragment() {
         // Required empty public constructor
@@ -43,10 +44,16 @@ public class QuestionWaitFragment extends Fragment {
             getActivity().setTitle(bundle.getString("title"));
         }
 
-        new TimerThread().execute(String.valueOf(5), String.valueOf(1000));
+        tt = new TimerThread();
+        tt.execute(String.valueOf(5), String.valueOf(1000));
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        tt.cancel(true);
+    }
 
     class TimerThread extends AsyncTask<String, Void, String> {
 
