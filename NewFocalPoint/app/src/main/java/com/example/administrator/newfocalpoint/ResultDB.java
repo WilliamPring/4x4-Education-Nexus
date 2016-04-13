@@ -18,13 +18,14 @@ public class ResultDB {
     public static String Question = "Question_Number";
     public static String QuestionAns = "Question_Answer";
     public static String UserAnswer = "User_Answer";
-
+    public static String UserAcc = "userAcc";
     public static final String CREATE_ACCOUNT_TABLE =
             "CREATE TABLE " + TableName + " (" +
-                    TASK_ID         + " INTEGER PRIMARY KEY, " +
+                    TASK_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     Question + " TEXT NOT NULL, " +
                     QuestionAns + " TEXT NOT NULL, " +
-                    UserAnswer + " TEXT NOT NULL);";
+                    UserAnswer + " TEXT NOT NULL," +
+                    "FOREIGN KEY("+ UserAcc + ") REFERENCES Account(_id)"+");";
 
     public static final String DROP_LIST_TABLE =
             "DROP TABLE IF EXISTS" + TableName;
@@ -75,7 +76,6 @@ public class ResultDB {
 
     public long insertTask(Results results) {
         ContentValues cv = new ContentValues();
-        cv.put(TASK_ID, results.getId());
         cv.put(Question, results.getQuestionNumber());
         cv.put(QuestionAns, results.getQuestionAnswer());
         cv.put(UserAnswer, results.getUserChoice());
