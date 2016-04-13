@@ -1,5 +1,7 @@
 package com.example.administrator.newfocalpoint;
 
+import javax.xml.transform.Result;
+
 /**
  * Created by William Pring on 4/13/2016.
  */
@@ -48,4 +50,7 @@ public class Results {
         this.questionAnswer = questionAnswer;
         this.userChoice = userChoice;
     }
+    public Results()
+    {}
+
 }

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.transform.Result;
@@ -79,7 +80,7 @@ public class ResultDB {
 
     public List<Results> matchPasswordAndUser()
     {
-        List<Results> myResult = null;
+        List<Results> myResult = new ArrayList<>();
         boolean status = false;
         openReadableDB();
         ContentValues contentValues = new ContentValues();
@@ -88,16 +89,18 @@ public class ResultDB {
         int question;
         String userAnswer;
         String questionAnswer;
-        if (cursor.moveToFirst())
-        {
-            
-            do {
-                question = cursor.getInt(0);
-                questionAnswer = cursor.getString(1);
-                userAnswer = cursor.getString(2);
-                myResult.add(new Results(LoginFragment.ID, question, questionAnswer,userAnswer));
+        if (cursor.moveToFirst()) {
+            try {
+                do {
+                    question = cursor.getInt(0);
+                    questionAnswer = cursor.getString(1);
+                    userAnswer = cursor.getString(2);
+                    myResult.add(new Results(LoginFragment.ID, question, questionAnswer, userAnswer));
 
-            }while(cursor.moveToNext());
+                } while (cursor.moveToNext());
+            } catch (Exception ex) {
+                String info = ex.toString();
+            }
         }
         closeCursor(cursor);
         return myResult;

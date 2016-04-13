@@ -23,6 +23,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import javax.xml.transform.Result;
 
 
@@ -162,6 +164,9 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
         ResultDB db = new ResultDB(globalContext);
         Results results = new Results(LoginFragment.ID, questionNumber,"A", userChoice);
         db.insertTask(results);
+
+
+        List<Results> temp = db.matchPasswordAndUser();
         Fragment newFragment = new FillBlank();
         Bundle args = new Bundle();
         args.putString("question", "In 1812, computers we often used to do _________.");
