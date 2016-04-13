@@ -12,6 +12,7 @@ package com.example.administrator.newfocalpoint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,11 +85,19 @@ public class TrueFalse extends Fragment{
             @Override
             public void onSwipeRight() {
                 Toast.makeText(getActivity(), "Swiped Right!", Toast.LENGTH_SHORT).show();
+
+                Fragment newFragment = new ResultsFragment();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
             }
 
             @Override
             public void onSwipeLeft() {
                 Toast.makeText(getActivity(), "Swiped Left!", Toast.LENGTH_SHORT).show();
+
+                Fragment newFragment = new ResultsFragment();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
             }
 
         });
