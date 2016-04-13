@@ -40,4 +40,12 @@ public class Results {
     int questionNumber;
     String questionAnswer;
     String userChoice;
+
+    public Results(int curID, int questionNumber, String questionAnswer, String userChoice)
+    {
+        id = curID;
+        this.questionNumber= questionNumber;
+        this.questionAnswer = questionAnswer;
+        this.userChoice = userChoice;
+    }
 }

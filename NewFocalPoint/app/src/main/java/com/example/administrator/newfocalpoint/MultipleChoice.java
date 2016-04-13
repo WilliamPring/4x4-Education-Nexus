@@ -9,6 +9,9 @@
 
 package com.example.administrator.newfocalpoint;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import javax.xml.transform.Result;
 
 
 public class MultipleChoice extends Fragment implements Button.OnClickListener{
@@ -43,6 +49,7 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
     private TextView txtQuestion;
     private TextView txtQNum;
     private TextView txtTimer;
+    Context globalContext;
 
     private TimerThread tt;
 
@@ -90,6 +97,7 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
         if(bundle!=null && bundle.containsKey("title")){
             getActivity().setTitle(bundle.getString("title"));
         }
+        globalContext = this.getContext();
 
         //fill fields
         txtQNum = (TextView) view.findViewById(R.id.questionNumber);
@@ -129,9 +137,30 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
 
     @Override
     public void onClick(View v) {
-
+        String userChoice = "";
         tt.cancel(true);
 
+
+        switch (v.getId()) {
+            case R.id.questionAButton:
+                userChoice= "A";
+                break;
+
+            case R.id.questionBButton:
+                userChoice= "B";
+                break;
+
+            case R.id.questionCButton:
+                userChoice= "C";
+                break;
+            case R.id.questionDButton:
+                userChoice= "D";
+                break;
+            default:
+                break;
+        }
+        ResultDB db = new ResultDB(globalContext);
+        Results results = new Results(LoginFragment.ID, questionNumber,"", userChoice);
         Fragment newFragment = new FillBlank();
         Bundle args = new Bundle();
         args.putString("question", "In 1812, computers we often used to do _________.");
