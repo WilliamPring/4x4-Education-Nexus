@@ -86,6 +86,10 @@ public class TrueFalse extends Fragment{
             public void onSwipeRight() {
                 Toast.makeText(getActivity(), "Swiped Right!", Toast.LENGTH_SHORT).show();
 
+                ResultDB db = new ResultDB(getContext());
+                Results results = new Results(LoginFragment.ID, questionNumber,"True", "True");
+                db.insertTask(results);
+
                 Fragment newFragment = new ResultsFragment();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
@@ -94,6 +98,10 @@ public class TrueFalse extends Fragment{
             @Override
             public void onSwipeLeft() {
                 Toast.makeText(getActivity(), "Swiped Left!", Toast.LENGTH_SHORT).show();
+
+                ResultDB db = new ResultDB(getContext());
+                Results results = new Results(LoginFragment.ID, questionNumber,"False", "True");
+                db.insertTask(results);
 
                 Fragment newFragment = new ResultsFragment();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();

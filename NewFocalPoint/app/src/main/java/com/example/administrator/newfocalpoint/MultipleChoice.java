@@ -160,7 +160,7 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
                 break;
         }
         ResultDB db = new ResultDB(globalContext);
-        Results results = new Results(LoginFragment.ID, questionNumber,"", userChoice);
+        Results results = new Results(LoginFragment.ID, questionNumber,"A", userChoice);
         db.insertTask(results);
         Fragment newFragment = new FillBlank();
         Bundle args = new Bundle();

@@ -111,6 +111,11 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         args.putString("question", "There are 652 banana chunks in your average pineapple.");
         args.putInt("questionNumber", 3);
         newFragment.setArguments(args);
+
+        ResultDB db = new ResultDB(getContext());
+        Results results = new Results(LoginFragment.ID, questionNumber,"Nothing", answer.getText().toString());
+        db.insertTask(results);
+
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
     }
