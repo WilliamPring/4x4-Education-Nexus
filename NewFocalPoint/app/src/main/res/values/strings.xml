@@ -23,4 +23,7 @@
     <string name="question_text">Question text</string>
     <string name="answer_text">Answer</string>
     <string name="submitAnswer">Submit Answer</string>
+    <string name="appwidget_text">Quiz Available!</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_notification__login">Notification_Login</string>
 </resources>
