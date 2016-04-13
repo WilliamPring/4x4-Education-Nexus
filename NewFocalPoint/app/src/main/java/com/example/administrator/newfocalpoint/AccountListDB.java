@@ -74,6 +74,7 @@ public class AccountListDB {
         if (db != null)
             db.close();
     }
+
     private void closeCursor(Cursor cursor) {
         if (cursor != null)
             cursor.close();

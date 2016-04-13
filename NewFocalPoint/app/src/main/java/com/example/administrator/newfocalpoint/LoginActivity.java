@@ -16,11 +16,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        BroadcastReceiver myBroadcastReceiver;
+
+
+
         setContentView(R.layout.activity_login);
 
         if(getIntent().hasExtra("lORc")){

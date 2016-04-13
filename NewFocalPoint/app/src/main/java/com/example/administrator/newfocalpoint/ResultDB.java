@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.List;
+
+import javax.xml.transform.Result;
+
 /**
  * Created by William Pring on 4/13/2016.
  */
@@ -73,6 +77,31 @@ public class ResultDB {
         db = dbHelper.getReadableDatabase();
     }
 
+    public List<Results> matchPasswordAndUser()
+    {
+        List<Results> myResult = null;
+        boolean status = false;
+        openReadableDB();
+        ContentValues contentValues = new ContentValues();
+        String query = "SELECT Question_Number, Question_Answer, User_Answer FROM " + TableName +";";
+        Cursor cursor = db.rawQuery(query, null);
+        int question;
+        String userAnswer;
+        String questionAnswer;
+        if (cursor.moveToFirst())
+        {
+            
+            do {
+                question = cursor.getInt(0);
+                questionAnswer = cursor.getString(1);
+                userAnswer = cursor.getString(2);
+                myResult.add(new Results(LoginFragment.ID, question, questionAnswer,userAnswer));
+
+            }while(cursor.moveToNext());
+        }
+        closeCursor(cursor);
+        return myResult;
+    }
 
     public long insertTask(Results results) {
         ContentValues cv = new ContentValues();
