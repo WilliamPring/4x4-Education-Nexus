@@ -26,7 +26,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     Button loginBttn;
     Button createAcc;
     Button forgotPass;
-
+    static int ID;
     EditText login;
     EditText pass;
 
@@ -38,6 +38,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -74,6 +75,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 boolean status = db.matchPasswordAndUser(login.getText().toString(), pass.getText().toString());
                 if (status)
                 {
+                    ID = db.getID(login.getText().toString(), pass.getText().toString());
                     Toast.makeText(getActivity(),"Logging In", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getActivity(), main_drawer_activity.class);
                     startActivity(intent);

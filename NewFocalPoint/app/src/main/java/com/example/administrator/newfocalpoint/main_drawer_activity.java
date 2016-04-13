@@ -90,7 +90,7 @@ public class main_drawer_activity extends AppCompatActivity {
 
 
         //titles for the drawer layout
-        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Logo"};
+        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Logo", "Maps"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
@@ -125,6 +125,12 @@ public class main_drawer_activity extends AppCompatActivity {
                     Fragment newFragment = new QuestionWaitFragment();
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.container, newFragment).commit();
+                }
+                else if(menu[position].equals("Maps"))
+                {
+                    Intent intent = new Intent(view.getContext(), MapsActivity.class);
+                    startActivity(intent);
+
                 }
                 else if (menu[position].equals("Download Logo")) {
                     //download file

@@ -85,7 +85,32 @@ public class AccountListDB {
     private void openReadableDB() {
         db = dbHelper.getReadableDatabase();
     }
+    public int getID(String user, String pass)
+    {
+        int curID =0;
+        boolean status = false;
+        openReadableDB();
+        ContentValues contentValues = new ContentValues();
+        String query = "SELECT Email, Password, _id" +" FROM " + TableName+ ";";
+        Cursor cursor = db.rawQuery(query, null);
+        String username;
+        String password;
+        if (cursor.moveToFirst())
+        {
+            do {
+                username = cursor.getString(0);
+                password = cursor.getString(1);
+                if ((username.equals(user)) && (password.equals(pass)))
+                {
+                    curID =  cursor.getInt(2);
+                    break;
+                }
 
+            }while(cursor.moveToNext());
+        }
+        closeCursor(cursor);
+        return curID;
+    }
     public boolean matchPasswordAndUser(String user, String pass)
     {
         boolean status = false;
