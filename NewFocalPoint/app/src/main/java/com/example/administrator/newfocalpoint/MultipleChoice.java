@@ -170,7 +170,7 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
         Bundle args = new Bundle();
         args.putString("question", "In 1812, computers we often used to do _________.");
         args.putInt("questionNumber", 2);
-        args.putString("questionType", "mutliplechoice");
+        args.putString("questionType", "fillblank");
         newFragment.setArguments(args);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
@@ -218,6 +218,7 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
             Bundle args = new Bundle();
             args.putString("question", "In 1812, computers we often used to do _________.");
             args.putInt("questionNumber", 2);
+            args.putString("questionType", "fillblank");
             newFragment.setArguments(args);
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();

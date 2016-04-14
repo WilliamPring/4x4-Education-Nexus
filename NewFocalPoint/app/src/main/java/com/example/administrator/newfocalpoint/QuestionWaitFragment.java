@@ -13,6 +13,7 @@ package com.example.administrator.newfocalpoint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,17 @@ public class QuestionWaitFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
 
+        Log.d("WAITING", "getArguments: " + getArguments());
+        if (getArguments() != null) {
+            toSend = getArguments();
+        }
+        else{
+            toSend = new Bundle();
+        }
+
+        Log.d("WAITING", "toSend: " + toSend);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,8 +49,6 @@ public class QuestionWaitFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_question_wait, container, false);
 
         Bundle bundle = getArguments();
-
-        toSend = new Bundle();
         if(bundle!=null && bundle.containsKey("title")){
             getActivity().setTitle(bundle.getString("title"));
             if(bundle.containsKey("questionType")){
@@ -48,6 +56,7 @@ public class QuestionWaitFragment extends Fragment {
                 toSend.putInt("questionNumber", bundle.getInt("questionNumber"));
             }
             else{
+                toSend.putString("questionType", "multiplechoice");
                 toSend.putString("question", "How many apple pies does it take to loosen a rusty bolt on an orange squishing machine?");
                 toSend.putString("answerA", "1");
                 toSend.putString("answerB", "2");

@@ -38,6 +38,8 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
 
     private TimerThread tt;
 
+    private Bundle toSend;
+
     public FillBlank() {
         // Required empty public constructor
     }
@@ -57,6 +59,10 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         if (getArguments() != null) {
             questionNumber = getArguments().getInt("questionNumber");
             questionText = getArguments().getString("question");
+            toSend = getArguments();
+        }
+        else{
+            toSend = new Bundle();
         }
     }
 
@@ -106,10 +112,11 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         mgr.hideSoftInputFromWindow(answer.getWindowToken(), 0);
 
         //go to next question
-        Fragment newFragment = new TrueFalse();
+        Fragment newFragment = new QuestionWaitFragment();
         Bundle args = new Bundle();
         args.putString("question", "There are 652 banana chunks in your average pineapple.");
         args.putInt("questionNumber", 3);
+        args.putString("questionType", "truefalse");
         newFragment.setArguments(args);
 
         ResultDB db = new ResultDB(getContext());

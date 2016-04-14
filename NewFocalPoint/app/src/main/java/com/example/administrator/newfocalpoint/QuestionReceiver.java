@@ -1,18 +1,41 @@
 package com.example.administrator.newfocalpoint;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
-/**
- * Created by Matt on 4/14/2016.
- */
 public class QuestionReceiver extends BroadcastReceiver{
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String questionType = intent.getStringExtra("questionType");
+
+        Intent notificationIntent = new Intent(context, main_drawer_activity.class);
+        notificationIntent.putExtras(intent.getExtras());
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.setAction("actionString" + System.currentTimeMillis());
+        Log.d("NOTIFICATION", "bundle: " + intent.getExtras());
+        int uniqueInt = (int) (System.currentTimeMillis() & 0xfffffff);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,
+                0,
+                notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+        Notification notification = new Notification.Builder(context)
+                .setContentTitle("Question is ready!")
+                .setContentText("Click here to answer the next question.")
+                .setSmallIcon(R.drawable.logo)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .getNotification();
+        NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(123456, notification);
+        abortBroadcast();
 
     }
 

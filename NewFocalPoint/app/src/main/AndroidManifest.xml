@@ -44,10 +44,14 @@
                 android:resource="@xml/quiz_widget_info" />
         </receiver>
 
-        <receiver android:name=".QuestionReceiver">
+        <receiver android:name=".QuestionReceiver"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
+
                 <action android:name="com.example.administrator.newfocalpoint.CHANGE_QUESTION"/>
             </intent-filter>
+
         </receiver>
 
         <!--
@@ -65,7 +69,7 @@
         <service
             android:name=".NewQuestionService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
     </application>
 
 </manifest>
