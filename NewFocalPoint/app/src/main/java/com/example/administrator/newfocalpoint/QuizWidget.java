@@ -1,3 +1,14 @@
+/*
+* FILE : QuizWidget.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* The widget for our application that tells the stuatus of the Quiz Availalbe
+*/
+
+
+
 package com.example.administrator.newfocalpoint;
 
 import android.app.PendingIntent;
