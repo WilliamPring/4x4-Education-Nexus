@@ -28,12 +28,12 @@ import android.widget.Toast;
 import java.io.File;
 
 public class main_drawer_activity extends AppCompatActivity {
-    Context mContext;
+
     private String[] menu;
     private DrawerLayout dLayout;
     private ListView dList;
     private ArrayAdapter<String> adapter;
-
+    private boolean creatingQuestion = false;
 
     //used to download file from a given url and save it to a directory we create
     public void downloadFile(String uRl) {
@@ -84,8 +84,8 @@ public class main_drawer_activity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle info) {
+        super.onCreate(info);
         setContentView(R.layout.activity_main_drawer_activity);
 
 
@@ -125,14 +125,11 @@ public class main_drawer_activity extends AppCompatActivity {
                     Fragment newFragment = new QuestionWaitFragment();
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.container, newFragment).commit();
-                }
-                else if(menu[position].equals("Maps"))
-                {
+                } else if (menu[position].equals("Maps")) {
                     Intent intent = new Intent(view.getContext(), MapsActivity.class);
                     startActivity(intent);
 
-                }
-                else if (menu[position].equals("Download Logo")) {
+                } else if (menu[position].equals("Download Logo")) {
                     //download file
                     downloadFile("http://williampring.com/res/logoApp.gif");
                 }
@@ -140,12 +137,96 @@ public class main_drawer_activity extends AppCompatActivity {
             }
         });
 
+
+
+        boolean flag = true;
+        if(info!=null){
+            creatingQuestion = true;
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            Fragment newFragment;
+            switch(info.getString("questionType")){
+                case "multiplechoice":
+
+                    newFragment = MultipleChoice.newInstance(
+                            info.getInt("questionNumber"),
+                            info.getString("question"),
+                            info.getString("answerA"),
+                            info.getString("answerB"),
+                            info.getString("answerC"),
+                            info.getString("answerD")
+                    );
+                    ft.add(R.id.container, newFragment);
+                    break;
+                case "truefalse":
+                    newFragment = TrueFalse.newInstance(
+                            info.getInt("questionNumber"),
+                            info.getString("question")
+                    );
+                    ft.add(R.id.container, newFragment);
+                    break;
+                case "fillblank":
+                    newFragment = FillBlank.newInstance(
+                            info.getInt("questionNumber"),
+                            info.getString("question")
+                    );
+                    ft.add(R.id.container, newFragment);
+                    break;
+                default:
+                    flag = false;
+                    break;
+            }
+            if(flag){
+                ft.commit();
+            }
+        }
+        else{
+            Fragment newFragment = new CourseListFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.container, newFragment).commit();
+        }
+
         //go to courses
-        Fragment newFragment = new CourseListFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.container, newFragment).commit();
+
+        if(!creatingQuestion) {
+
+        }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        //super.onNewIntent(intent);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment newFragment;
+        Bundle info = intent.getExtras();
+        switch(info.getString("questionType")){
+            case "multiplechoice":
 
-
+                newFragment = MultipleChoice.newInstance(
+                        info.getInt("questionNumber"),
+                        info.getString("question"),
+                        info.getString("answerA"),
+                        info.getString("answerB"),
+                        info.getString("answerC"),
+                        info.getString("answerD")
+                );
+                ft.add(R.id.container, newFragment);
+                break;
+            case "truefalse":
+                newFragment = TrueFalse.newInstance(
+                        info.getInt("questionNumber"),
+                        info.getString("question")
+                );
+                ft.add(R.id.container, newFragment);
+                break;
+            case "fillblank":
+                newFragment = FillBlank.newInstance(
+                        info.getInt("questionNumber"),
+                        info.getString("question")
+                );
+                ft.add(R.id.container, newFragment);
+                break;
+            default:
+                break;
+        }
+    }
 }

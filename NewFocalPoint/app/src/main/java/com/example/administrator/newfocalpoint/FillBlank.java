@@ -159,10 +159,11 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         @Override
         protected void onPostExecute(String result){
             //launch next question here
-            Fragment newFragment = new TrueFalse();
+            Fragment newFragment = new QuestionWaitFragment();
             Bundle args = new Bundle();
             args.putString("question", "There are 652 banana chunks in your average pineapple.");
             args.putInt("questionNumber", 3);
+            args.putString("questionType", "fillblank");
             newFragment.setArguments(args);
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();

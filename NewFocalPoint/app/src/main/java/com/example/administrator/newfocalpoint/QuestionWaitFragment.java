@@ -10,17 +10,17 @@
 
 package com.example.administrator.newfocalpoint;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class QuestionWaitFragment extends Fragment {
 
-    TimerThread tt;
+
+    Bundle toSend;
 
     public QuestionWaitFragment() {
         // Required empty public constructor
@@ -40,59 +40,35 @@ public class QuestionWaitFragment extends Fragment {
 
         Bundle bundle = getArguments();
 
+        toSend = new Bundle();
         if(bundle!=null && bundle.containsKey("title")){
             getActivity().setTitle(bundle.getString("title"));
+            if(bundle.containsKey("questionType")){
+                toSend.putString("question", bundle.getString("question"));
+                toSend.putInt("questionNumber", bundle.getInt("questionNumber"));
+            }
+            else{
+                toSend.putString("question", "How many apple pies does it take to loosen a rusty bolt on an orange squishing machine?");
+                toSend.putString("answerA", "1");
+                toSend.putString("answerB", "2");
+                toSend.putString("answerC", "3.14");
+                toSend.putString("answerD", "What kind of stupid question is this?");
+                toSend.putInt("questionNumber", 1);
+            }
         }
 
-        tt = new TimerThread();
-        tt.execute(String.valueOf(5), String.valueOf(1000));
+        //start the service
+        Intent serviceIntent = new Intent(getActivity(), NewQuestionService.class);
+        serviceIntent.putExtras(toSend);
+        getActivity().startService(serviceIntent);
         return view;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        tt.cancel(true);
     }
 
-    //thread for counting down time
-    class TimerThread extends AsyncTask<String, Void, String> {
 
-        @Override
-        protected void onPreExecute(){
-        }
-
-        @Override
-        protected String doInBackground(String... params){
-            try{
-                int loopCount = Integer.parseInt(params[0]);
-                long waitTime = Long.parseLong(params[1]);
-                for(int i = 0; i < loopCount; i++){
-                    Thread.sleep(waitTime);
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-            return String.valueOf(System.currentTimeMillis());
-        }
-
-        @Override
-        protected void onPostExecute(String result){
-            //launch next question here
-            Fragment newFragment = new MultipleChoice();
-            Bundle args = new Bundle();
-            args.putString("question", "How many apple pies does it take to loosen a rusty bolt on an orange squishing machine?");
-            args.putString("answerA", "1");
-            args.putString("answerB", "2");
-            args.putString("answerC", "3.14");
-            args.putString("answerD", "What kind of stupid question is this?");
-            args.putInt("questionNumber", 1);
-            newFragment.setArguments(args);
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
-
-        }
-    }
 
 }

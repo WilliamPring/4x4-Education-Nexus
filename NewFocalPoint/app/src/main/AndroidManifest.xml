@@ -24,7 +24,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,6 +42,12 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/quiz_widget_info" />
+        </receiver>
+
+        <receiver android:name=".QuestionReceiver">
+            <intent-filter>
+                <action android:name="com.example.administrator.newfocalpoint.CHANGE_QUESTION"/>
+            </intent-filter>
         </receiver>
 
         <!--

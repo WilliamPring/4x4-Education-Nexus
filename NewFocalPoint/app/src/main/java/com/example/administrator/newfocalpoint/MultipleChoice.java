@@ -166,10 +166,11 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
         db.insertTask(results);
 
 
-        Fragment newFragment = new FillBlank();
+        Fragment newFragment = new QuestionWaitFragment();
         Bundle args = new Bundle();
         args.putString("question", "In 1812, computers we often used to do _________.");
         args.putInt("questionNumber", 2);
+        args.putString("questionType", "mutliplechoice");
         newFragment.setArguments(args);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
