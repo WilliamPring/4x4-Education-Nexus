@@ -27,7 +27,7 @@ public class ResultDB {
     public static final String CREATE_ACCOUNT_TABLE =
             "CREATE TABLE " + TableName + " (" +
                     TASK_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    Question + " TEXT NOT NULL, " +
+                    Question + " INTEGER, " +
                     QuestionAns + " TEXT NOT NULL, " +
                     UserAnswer + " TEXT NOT NULL," +
                     "FOREIGN KEY("+ UserAcc + ") REFERENCES Account(_id)"+");";
