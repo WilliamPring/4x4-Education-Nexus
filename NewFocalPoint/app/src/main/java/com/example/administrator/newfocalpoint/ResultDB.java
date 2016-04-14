@@ -1,3 +1,15 @@
+/*
+* FILE : ResultDB.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-03-11
+* DESCRIPTION :
+* This file contains the ResultsInformation database with the data layer
+*/
+
+
+
+
 package com.example.administrator.newfocalpoint;
 
 import android.content.ContentValues;
