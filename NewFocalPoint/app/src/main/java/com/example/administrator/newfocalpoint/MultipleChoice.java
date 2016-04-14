@@ -166,7 +166,6 @@ public class MultipleChoice extends Fragment implements Button.OnClickListener{
         db.insertTask(results);
 
 
-        List<Results> temp = db.matchPasswordAndUser();
         Fragment newFragment = new FillBlank();
         Bundle args = new Bundle();
         args.putString("question", "In 1812, computers we often used to do _________.");

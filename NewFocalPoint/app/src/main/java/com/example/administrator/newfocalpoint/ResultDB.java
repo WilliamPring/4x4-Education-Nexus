@@ -29,8 +29,7 @@ public class ResultDB {
                     TASK_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     Question + " INTEGER, " +
                     QuestionAns + " TEXT NOT NULL, " +
-                    UserAnswer + " TEXT NOT NULL," +
-                    "FOREIGN KEY("+ UserAcc + ") REFERENCES Account(_id)"+");";
+                    UserAnswer + " TEXT NOT NULL);";
 
     public static final String DROP_LIST_TABLE =
             "DROP TABLE IF EXISTS" + TableName;
@@ -78,7 +77,7 @@ public class ResultDB {
         db = dbHelper.getReadableDatabase();
     }
 
-    public List<Results> matchPasswordAndUser()
+    public List<Results> GetResultsList()
     {
         List<Results> myResult = new ArrayList<>();
         boolean status = false;

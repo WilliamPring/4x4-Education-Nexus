@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 public class ResultsFragment extends Fragment {
 
     public ResultsFragment() {
@@ -33,11 +35,17 @@ public class ResultsFragment extends Fragment {
         getActivity().setTitle("Results");
 
         //pull from database right here
-
-        //then do this:
+        ResultDB res = new ResultDB(getContext());
+        List<Results> results = res.GetResultsList();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment newFrag = ResultFragment.newInstance("1", "A", "B");
-        ft.add(R.id.frag_container, newFrag);
+        Fragment newFrag;
+
+        if(results.size()!=0) {
+            for (Results r : results) {
+                newFrag = ResultFragment.newInstance(String.valueOf(r.getQuestionNumber()), r.getUserChoice(), r.getQuestionAnswer());
+                ft.add(R.id.frag_container, newFrag);
+            }
+        }
         ft.commit();
         return view;
     }
