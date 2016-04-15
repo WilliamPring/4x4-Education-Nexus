@@ -111,7 +111,7 @@ public class main_drawer_activity extends AppCompatActivity {
 
 
         //titles for the drawer layout
-        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Logo", "Maps"};
+        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Logo"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
@@ -152,12 +152,6 @@ public class main_drawer_activity extends AppCompatActivity {
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.container, newFragment).commit();
                         break;
-                    case "Maps": {
-                        Intent intent = new Intent(view.getContext(), MapsActivity.class);
-                        startActivity(intent);
-
-                        break;
-                    }
                     case "Download Logo":
                         //download file
                         downloadFile("http://williampring.com/res/logoApp.gif");
