@@ -45,46 +45,6 @@ public class main_drawer_activity extends AppCompatActivity {
     private QuestionReceiver qr;
     private BroadcastReceiver br;
 
-    //used to download file from a given url and save it to a directory we create
-    public void downloadFile(String uRl) {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            // We can read and write the media
-
-            Toast.makeText(getApplicationContext(), "Read Writeable = True", Toast.LENGTH_SHORT).show();
-            File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FocalPoint");
-            boolean success;
-
-            success = direct.exists() || direct.mkdirs();
-
-            DownloadManager mgr = (DownloadManager) getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
-
-            Uri downloadUri = Uri.parse(uRl);
-            DownloadManager.Request request = new DownloadManager.Request(downloadUri);
-
-            //if the directory was created or exists
-            if (success) {
-                try {
-                    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
-                            .setAllowedOverRoaming(false)
-                            .setTitle("Logo")
-                            .setDescription("FocalPoint Logo")
-                            .setDestinationInExternalPublicDir("/FocalPoint", "logo.gif");
-                    mgr.enqueue(request);
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(getApplicationContext(), "Failed to make directory.", Toast.LENGTH_SHORT).show();
-            }
-
-        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            Toast.makeText(getApplicationContext(), "Read Only.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Errors accessing directory.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -111,11 +71,10 @@ public class main_drawer_activity extends AppCompatActivity {
 
 
         //titles for the drawer layout
-        menu = new String[]{"Login", "Create Account", "Question Demo", "Download Logo"};
+        menu = new String[]{"Login", "Create Account", "Question Demo"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         dList = (ListView) findViewById(R.id.left_drawer);
 
-        //adapter for the drawer
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menu);
 
         dList.setAdapter(adapter);
@@ -151,10 +110,6 @@ public class main_drawer_activity extends AppCompatActivity {
                         Fragment newFragment = new QuestionWaitFragment();
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.container, newFragment).commit();
-                        break;
-                    case "Download Logo":
-                        //download file
-                        downloadFile("http://williampring.com/res/logoApp.gif");
                         break;
                 }
 
