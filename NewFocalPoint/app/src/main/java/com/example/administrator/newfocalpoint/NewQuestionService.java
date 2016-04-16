@@ -1,3 +1,11 @@
+/* FILE : NewQuestionService.java
+ * PROJECT : Mobile Application Development
+ * PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+ * FIRST VERSION : 2016-04-15
+ * DESCRIPTION :
+ * This file contains the service that will send the Change Question broadcast to the main activity
+ */
+
 package com.example.administrator.newfocalpoint;
 
 import android.app.Service;
@@ -11,12 +19,7 @@ public class NewQuestionService extends Service {
     public NewQuestionService() {
     }
 
-    private TimerThread tt;
     private Bundle questionInfo;
-
-
-
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -27,8 +30,8 @@ public class NewQuestionService extends Service {
             Log.d("SERVICE", "intent.getExtras: " + intent.getExtras().toString() + "   test:" + test);
             questionInfo = intent.getExtras();
 
-            tt = new TimerThread();
-            tt.execute(String.valueOf(5), String.valueOf(1000));
+            TimerThread tt = new TimerThread();
+            tt.execute(String.valueOf(5), String.valueOf(1000)); //start a timer for 5 seconds
         }
 
 
@@ -43,8 +46,6 @@ public class NewQuestionService extends Service {
         @Override
         protected void onPreExecute(){
         }
-
-
 
         @Override
         protected String doInBackground(String... params){
@@ -63,9 +64,7 @@ public class NewQuestionService extends Service {
 
         @Override
         protected void onPostExecute(String result){
-            //launch next question here
-            //start next fragment somehow?
-            //create notification and create next fragment
+            //create broadcast intent (CHANGE_QUESTION) to get caught by the activity or BroadcastReceiver
             Intent broadcastIntent = new Intent("com.example.administrator.newfocalpoint.CHANGE_QUESTION");
             broadcastIntent.putExtras(questionInfo);
             Log.d("POST EXECUTE", "extras: " + broadcastIntent.getExtras());

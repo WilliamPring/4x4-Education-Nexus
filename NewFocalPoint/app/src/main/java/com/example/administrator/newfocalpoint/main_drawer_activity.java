@@ -2,24 +2,17 @@
 * FILE : main_drawer_activity.java
 * PROJECT : Mobile Application Development
 * PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
-* FIRST VERSION : 2016-03-11
+* FIRST VERSION : 2016-04-15
 * DESCRIPTION :
 * This file contains the supporting functions and behaviour for the main activity, with a drawer, that will hold the fragments.
 */
 
 package com.example.administrator.newfocalpoint;
 
-import android.app.DownloadManager;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.Environment;
-import android.os.Parcel;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -32,15 +25,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.File;
 
 public class main_drawer_activity extends AppCompatActivity {
 
     private String[] menu;
     private DrawerLayout dLayout;
-    private ListView dList;
-    private ArrayAdapter<String> adapter;
-    private boolean creatingQuestion = false;
 
     private QuestionReceiver qr;
     private BroadcastReceiver br;
@@ -73,9 +62,9 @@ public class main_drawer_activity extends AppCompatActivity {
         //titles for the drawer layout
         menu = new String[]{"Login", "Create Account", "Question Demo"};
         dLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        dList = (ListView) findViewById(R.id.left_drawer);
+        ListView dList = (ListView) findViewById(R.id.left_drawer);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menu);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menu);
 
         dList.setAdapter(adapter);
         dList.setSelector(android.R.color.holo_orange_light);

@@ -56,6 +56,7 @@ public class QuestionWaitFragment extends Fragment {
                 toSend.putInt("questionNumber", bundle.getInt("questionNumber"));
             }
             else{
+                //set up first question
                 toSend.putString("questionType", "multiplechoice");
                 toSend.putString("question", "How many apple pies does it take to loosen a rusty bolt on an orange squishing machine?");
                 toSend.putString("answerA", "1");

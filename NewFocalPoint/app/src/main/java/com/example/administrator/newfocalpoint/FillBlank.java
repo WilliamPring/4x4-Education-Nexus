@@ -28,17 +28,11 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
     private String questionText;
     private int questionNumber;
 
-    private TextView txtQuestion;
-    private TextView txtQNum;
     private TextView txtTimer;
 
     private EditText answer;
 
-    private Button btnSubmit;
-
     private TimerThread tt;
-
-    private Bundle toSend;
 
     public FillBlank() {
         // Required empty public constructor
@@ -59,10 +53,6 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         if (getArguments() != null) {
             questionNumber = getArguments().getInt("questionNumber");
             questionText = getArguments().getString("question");
-            toSend = getArguments();
-        }
-        else{
-            toSend = new Bundle();
         }
     }
 
@@ -78,10 +68,10 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         }
 
         //set fields
-        txtQNum = (TextView) view.findViewById(R.id.questionNumber);
+        TextView txtQNum = (TextView) view.findViewById(R.id.questionNumber);
         txtQNum.setText("#" + Integer.toString(questionNumber));
 
-        txtQuestion = (TextView) view.findViewById(R.id.questionText);
+        TextView txtQuestion = (TextView) view.findViewById(R.id.questionText);
         txtQuestion.setText(questionText);
 
         txtTimer = (TextView) view.findViewById(R.id.timerCount);
@@ -89,7 +79,7 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
 
         answer = (EditText) view.findViewById(R.id.editText);
 
-        btnSubmit = (Button) view.findViewById(R.id.submitQuestion);
+        Button btnSubmit = (Button) view.findViewById(R.id.submitQuestion);
         btnSubmit.setOnClickListener(this); //set onclick listener from below
 
 
@@ -119,10 +109,12 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
         args.putString("questionType", "truefalse");
         newFragment.setArguments(args);
 
+        //save answer into the database
         ResultDB db = new ResultDB(getContext());
         Results results = new Results(LoginFragment.ID, questionNumber,"Nothing", answer.getText().toString());
         db.insertTask(results);
 
+        //switch fragments
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, newFragment).addToBackStack(String.valueOf(newFragment)).commit();
     }
@@ -165,7 +157,8 @@ public class FillBlank extends Fragment implements Button.OnClickListener{
 
         @Override
         protected void onPostExecute(String result){
-            //launch next question here
+
+            //go back to waiting for a new question
             Fragment newFragment = new QuestionWaitFragment();
             Bundle args = new Bundle();
             args.putString("question", "There are 652 banana chunks in your average pineapple.");

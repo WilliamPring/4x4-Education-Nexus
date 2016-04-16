@@ -1,3 +1,12 @@
+/*
+* FILE : QuestionReceiver.java
+* PROJECT : Mobile Application Development
+* PROGRAMMER : Matt Warren, William Pring, Steven Johnston, Denys Politiuk
+* FIRST VERSION : 2016-04-15
+* DESCRIPTION :
+* This file contains the supporting functions and behaviour for the main activity, with a drawer, that will hold the fragments.
+*/
+
 package com.example.administrator.newfocalpoint;
 
 import android.app.Notification;
@@ -11,6 +20,7 @@ import android.util.Log;
 public class QuestionReceiver extends BroadcastReceiver{
 
 
+    //creates notification when the broadcast is received
     @Override
     public void onReceive(Context context, Intent intent) {
 
